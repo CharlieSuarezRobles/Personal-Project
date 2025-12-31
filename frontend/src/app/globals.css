@@ -4,23 +4,42 @@
   /* General Purpose Colors */
   --background: #D5F0E9;
   --surface: #9EB2AD;
-  --action-primary: #3E9D82;
-  --action-secondary: #A9B2B1;
   --text-primary: #171717;
-  --note: #171717;
   --accent: #81DAC1;
   --strong-accent: #DAC481;
+
+  --action-primary: #3E9D82;
+  --action-primary-hover: #2E6B5A;
+  --action-primary-active: #204C40;
+
+  --action-secondary: #A9B2B1;
+  --action-secondary-hover: #79807F;
+  --action-secondary-active: #535B5A;
+
+  --note: #171717;
+  --note-hover: #3A3A3A;
+  --note-active: #7C7C7C;
+
   --error-or-danger: #E45A4A;
+  --error-or-danger-hover: #A54F46;
+  --error-or-danger-active: #7B3A32;
+
   --disabled: #D6D6CB;
 
   /* Status Colors */
-  --exit: #E45A4A;
   --success: #459834;
   --try-again: #B2B2B2;
 
+  --exit: #E45A4A;
+  --exit-hover: #A54F46;
+  --exit-active: #7B3A32;
+
   /* Extra Colors */
   --brown: #9B8778;
+
   --yellow: #DCD661;
+  --yellow-hover: #BCB755;
+  --yellow-active: #A29D4A;
 
   /* Fonts */
   --main-font: "Lato", Arial, Helvetica, sans-serif;
@@ -29,87 +48,30 @@
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 .primary-buttons {
+  width: 167px;
+  height: 108px;
+  gap: 10px;
+  padding: 30px, 40px;
+  border-radius: 30px;
   background: var(--action-primary);
 }
 
-.primary-buttons:hover {
-  background: #2E6B5A;
-}
 
-.primary-buttons:active {
-  background: #204C40;
-}
 
-.secondary-buttons {
-  background: var(--action-secondary);
-}
 
-.secondary-buttons:hover {
-  background: #79807F
-}
 
-.secondary-buttons:active {
-  background: #535B5A
-}
 
-.note-buttons {
-  background: #171717;
-}
 
-.note-buttons:hover {
-  background: #3A3A3A;
-}
 
-.note-buttons:active {
-  background: #7C7C7C;
-}
 
-.danger-or-error-buttons {
-  background: var(--error-or-danger);
-}
 
-.danger-or-error-buttons:hover {
-  background: #A54F46;
-}
 
-.danger-or-error-buttons:active {
-  background: #7B3A32;
-}
 
-.exit-buttons {
-  background: var(--exit);
-}
 
-.exit-buttons:hover {
-  background: #A54F46;
-}
 
-.exit-buttons:active {
-  background: #7B3A32;
-}
-
-.yellow-buttons {
-  background: var(--yellow);
-}
-
-.yellow-buttons:hover {
-  background: #BCB755;
-}
-
-.yellow-buttons:active {
-  background: #A29D4A;
-}
 
 .title, .body, .heading, .label, .note-text, .feedback-text {
-  background: var(--surface);
   color: var(--text-primary);
   font-family: var(--main-font), Arial, Helvetica, sans-serif;
 }
@@ -119,7 +81,7 @@
   font-size: 70px;
 }
 
-body {
+.body {
   font-weight: 400;
   font-size: 40px;
 }
