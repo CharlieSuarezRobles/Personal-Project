@@ -57,20 +57,6 @@
   background: var(--action-primary);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .title, .body, .heading, .label, .note-text, .feedback-text {
   color: var(--text-primary);
   font-family: var(--main-font), Arial, Helvetica, sans-serif;
@@ -94,6 +80,11 @@
 .label {
   font-weight: bold;
   font-size: 40px;
+}
+
+.small-label {
+  font-weight: bold;
+  font-size: 30px;
 }
 
 .note-text {
