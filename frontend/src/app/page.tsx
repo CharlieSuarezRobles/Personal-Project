@@ -41,11 +41,36 @@ export default function Home() {
 
 
   // Delete button logic
+  const [overlay, setOverlay] = useState<Boolean>(false);
+
   const handleDelete = () => {
     //Setting firstTime to true is the same as deleting it as in either case, the start button
     //behaves as if it's the user's first time going into the website
-    localStorage.setItem("firstTime", "true");
+    setOverlay(true);
   };
+
+  const[deletedOverlay, setDeletedOverlay] = useState<Boolean>(false);
+
+  useEffect(() => {
+    if (!deletedOverlay) return;
+
+    const timer = setTimeout(() => {
+      setDeletedOverlay(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [deletedOverlay])
+  
+  const handleYes = () => {
+    localStorage.setItem("currentLevel", "1");
+    localStorage.setItem("firstTime", "true");
+    setFirstTime(true);
+    setOverlay(false);
+    setDeletedOverlay(true);
+  }
+
+  const handleNo = () => {
+    setOverlay(false);
+  }
 
 
   const handleContinued = () => {
@@ -67,7 +92,7 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden h-screen w-full bg-[var(--background)]">
-      {/* Title */}
+      {/* Title on menu screen */}
       <div className="h-full w-full flex flex-col items-center justify-center gap-8 px-6 py-6">
         {!hasPressedStart && 
           <div className="text-center">
@@ -76,6 +101,7 @@ export default function Home() {
           </div>
         }
 
+      {/* Title on menu screen - first time */}
         {hasPressedStart && firstTime === true && 
           <div className= "flex items-center justify-center p-3 rounded-[30px] bg-[var(--surface)]">
             <p  className="text-center heading">
@@ -84,7 +110,7 @@ export default function Home() {
           </div>
         }
 
-        {/* Description box */}
+        {/* Description box on menu screen*/}
         {!hasPressedStart &&
           <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
           <p className="max-w-[895px] text-center body">
@@ -93,6 +119,7 @@ export default function Home() {
           </p>
         </div>
         }
+        {/* Description box on menu screen - first time */}
         {hasPressedStart && firstTime == true &&
           <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
             <p className="max-w-[1200px] text-center body">
@@ -104,7 +131,7 @@ export default function Home() {
           </div>
         }
 
-        {/* Buttons */}
+        {/* Buttons on menu screen*/}
         {!hasPressedStart &&
           <div className="w-full grid grid-cols-3">
 
@@ -115,6 +142,7 @@ export default function Home() {
               label="Start"
               color="primary"
               onClick={handleStart}
+              variant="default"
               className="max-w-[167px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               />
             </div>
@@ -124,12 +152,14 @@ export default function Home() {
               label="Delete progress"
               color="danger"
               onClick={handleDelete}
+              variant="default"
               className="max-w-[400px] w-fit max-h-[68px] flex items-center justify-center py-3 px-3 rounded-[30px] small-label"
             />
             </div>
           </div>
         }
 
+        {/* buttons on menu screen - first time*/}
         {hasPressedStart && firstTime === true &&
           <div className="w-full grid grid-cols-3">
 
@@ -140,13 +170,49 @@ export default function Home() {
               label="Continue"
               color="primary"
               onClick={handleContinued}
+              variant="default"
               className="max-w-[400px] w-fit max-h-[68px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
             />
             </div>
             <div></div>
           </div>
         }
-          
+        {/* overlay */}
+        {overlay &&
+          <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
+            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] body">
+              <p className="text-center body">
+                Are you sure that you want to delete the game? All progress will be gone
+              </p>
+            </div>
+            <div className="w-full flex items-center justify-center gap-30">
+              <Button
+              label="No"
+              color="primary"
+              onClick={handleNo}
+              variant="default"
+              className="max-w-[134px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
+              ></Button>
+              <Button
+              label="Yes"
+              color="danger"
+              onClick={handleYes}
+              variant="default"
+              className="max-w-[134px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
+              ></Button>
+            </div>
+          </div>
+        }
+        {deletedOverlay &&
+          <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
+            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] body">
+              <p className="text-center title">
+                Deleted
+              </p>
+            </div>
+          </div>
+        }
+
       </div>
     </main>
   );

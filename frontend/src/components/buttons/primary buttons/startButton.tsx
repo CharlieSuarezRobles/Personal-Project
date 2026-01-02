@@ -1,11 +1,13 @@
+import { ColorVariant, ShapeVariant } from "../../../types";
+
 type ButtonProps = {
     label: string;
     onClick?: () => void;
     color?: ColorVariant;
+    variant: ShapeVariant;
     className?: string;
 }
 
-type ColorVariant = "primary" | "secondary" | "danger" | "note" | "disabled" | "yellow";
 
 const colors: Record<ColorVariant, string> = {
     primary: `
@@ -38,27 +40,27 @@ const colors: Record<ColorVariant, string> = {
     `
 };
 
+const variants: Record<ShapeVariant, string> = {
+    default: "min-w-[50px] min-h-[50px] px-[10px] py-[10px] rounded-[30px]",
+    circle: "min-w-[100px] min-h-[100px] rounded-full p-0",
+    square: "min-w-[100px] min-h-[100px] rounded-[20px]",
+}
+
 // Properties of a button
 // Width, height, justify-content, align-items, gap, padding, border-radius, background-color,
 // font-family, font-size, font-weight, 
 
-export function Button({label, onClick, color = "danger", className}: ButtonProps) {
+export function Button({label, onClick, color = "danger", variant, className}: ButtonProps) {
     return (
         <button
-            onClick={onClick}
+            onClick={color === "disabled" ? undefined : onClick}
+            disabled={color === "disabled"}
             className={`
-                min-w-[50px]
-                min-h-[50px]
-                flex
-                justify-center
-                items-center
-                gap-[10px]
-                px-[10px]
-                py-[10px]
-                rounded-[30px]
+                flex items-center justify-center
                 ${colors[color]}
                 text-[40px]
                 font-bold
+                ${variants[variant]}
                 ${className ?? ""}`}
         >
             {label}

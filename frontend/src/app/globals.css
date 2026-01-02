@@ -2,6 +2,8 @@
 
 :root {
   /* General Purpose Colors */
+  --black: #000000;
+
   --background: #D5F0E9;
   --surface: #9EB2AD;
   --text-primary: #171717;
