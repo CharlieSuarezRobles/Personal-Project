@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import { Button } from "../components/buttons/primary buttons/startButton";
@@ -43,13 +42,17 @@ export default function Home() {
 
   // Delete button logic
   const handleDelete = () => {
-    console.log("Delete progress");
+    //Setting firstTime to true is the same as deleting it as in either case, the start button
+    //behaves as if it's the user's first time going into the website
+    localStorage.setItem("firstTime", "true");
   };
 
 
-  const continued = () => {
+  const handleContinued = () => {
     //set the first time in local storage to false
+    localStorage.setItem("firstTime", "false");
     //go to the next screen
+    router.push("/maps/1");
   }
 
   //Order in which tailwind classes are coded:
@@ -136,7 +139,7 @@ export default function Home() {
               <Button
               label="Continue"
               color="primary"
-              onClick={handleDelete}
+              onClick={handleContinued}
               className="max-w-[400px] w-fit max-h-[68px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
             />
             </div>
