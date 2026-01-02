@@ -73,7 +73,7 @@ export default function Home() {
   }
 
 
-  const handleContinued = () => {
+  const handleContinue = () => {
     //set the first time in local storage to false
     localStorage.setItem("firstTime", "false");
     //go to the next screen
@@ -169,7 +169,7 @@ export default function Home() {
               <Button
               label="Continue"
               color="primary"
-              onClick={handleContinued}
+              onClick={handleContinue}
               variant="default"
               className="max-w-[400px] w-fit max-h-[68px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
             />
