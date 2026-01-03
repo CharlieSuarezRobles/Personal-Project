@@ -42,8 +42,8 @@ const colors: Record<ColorVariant, string> = {
 
 const variants: Record<ShapeVariant, string> = {
     default: "min-w-[50px] min-h-[50px] px-[10px] py-[10px] rounded-[30px]",
-    circle: "min-w-[100px] min-h-[100px] rounded-full p-0",
-    square: "min-w-[100px] min-h-[100px] rounded-[20px]",
+    circle: "min-w-[10px] min-h-[10px] rounded-full p-0",
+    square: "min-w-[10px] min-h-[10px] rounded-[20px]",
 }
 
 // Properties of a button

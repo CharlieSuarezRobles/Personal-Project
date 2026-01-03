@@ -74,6 +74,11 @@
   font-size: 40px;
 }
 
+.small-body {
+  font-weight: 400;
+  font-size: 25px;
+}
+
 .heading {
   font-weight: bold;
   font-size: 60px;

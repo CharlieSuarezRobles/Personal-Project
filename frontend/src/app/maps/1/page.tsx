@@ -4,8 +4,11 @@ import { ColorVariant } from "../../../types";
 import { useState, useEffect } from "react";
 import { Button } from "../../../components/buttons/primary buttons/startButton";
 import { Overlay } from "../../../components/overlays/overlay";
+import { Flag } from "../../../components/flags/flag";
 
 export default function Map1() {
+
+  const router = useRouter();
 
   const steps = [
     <></>,
@@ -28,7 +31,6 @@ export default function Map1() {
     setInstructionOverlay(false);
   }
 
-  const router = useRouter();
   const [instructionOverlay, setInstructionOverlay] = useState<Boolean>(false);
 
   const handleInstructions = () => {
@@ -53,7 +55,15 @@ export default function Map1() {
 
   // Button 1 logic
 
-  const handleLevel1 = () => {};
+  const [level1, setLevel1] = useState<Boolean>(false);
+
+  const handleLevel1 = () => {
+    setLevel1(true);
+  };
+
+  const handleStartLevel1 = () => {
+    router.push("/maps/1/levels/1");
+  }
 
   // Button 2 logic
   const level2Color: Record<number, ColorVariant> = {
@@ -62,7 +72,16 @@ export default function Map1() {
     3: "primary",
   };
 
-  const handleLevel2 = () => {};
+  const [level2, setLevel2] = useState<Boolean>(false);
+
+  const handleLevel2 = () => {
+    setLevel2(true)
+  };
+
+  const handleStartLevel2 = () => {
+    router.push("/maps/1/levels/2");
+  }
+
 
   // Button 3 logic
   const level3Color: Record<number, ColorVariant> = {
@@ -71,16 +90,36 @@ export default function Map1() {
     3: "primary",
   };
 
-  const handleFinish = () => {};
+  const [finish, setFinish] = useState<Boolean>(false);
+
+  const handleFinish = () => {
+    setFinish(true);
+  };
+
+  const handleStartFinish = () => {
+    router.push("/maps/1/levels/3");
+  }
+
+  const handleCloseOverlay = () => {
+    setLevel1(false);
+    setLevel2(false);
+    setFinish(false);
+  }
+
+  const flag: { x: number; y: number; text: string; onStart: () => void; direction: "left" | "right" } | null =
+  finish ? { x: 64, y: 46, text: "End of music concept", onStart: handleFinish, direction: "right" } :
+  level2  ? { x: 49, y: 41, text: "Level 2\nIdentifying the 7 notes", onStart: handleStartLevel2, direction: "left" } :
+  level1  ? { x: 18, y: 41, text: "Level 1\nIntroducing the 7 notes of music", onStart: handleStartLevel1, direction: "left" } :
+  null;
 
   return (
     <main className="relative h-screen w-screen overflow-hidden flex items-center justify-center bg-[var(--background)]">
-      <div className="relative inline-block">
+      <div className="relative h-screen flex items-center justify-center">
         <img
           src="/Game-Map1.png"
           className="max-h-screen max-w-screen object-contain"
         />
-        <div className="absolute left-0 top-0 right-0 grid grid-cols-[1fr_auto_1fr] p-6 md:p-10 lg:p-12 z-10">
+        <div className="absolute left-0 top-0 right-0 grid grid-cols-[1fr_auto_1fr] p-6 md:p-10 lg:p-12 z-20">
           <div className="flex justify-center items-center">
             <Button
               label="Instructions"
@@ -106,33 +145,45 @@ export default function Map1() {
             ></Button>
           </div>
         </div>
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-10">
           <Button
             label=""
             color={currentLevel === 1 ? "yellow" : "primary"}
             onClick={handleLevel1}
             variant="square"
-            className="absolute max-w-[100px] max-h-[100px] left-[15%] top-[63%] rounded-[10px]"
+            className="absolute w-[8%] aspect-square min-w-[10px] max-w-[100px] left-[15%] top-[63%] rounded-[10px]"
           ></Button>
           <Button
             label=""
             color={level2Color[currentLevel] ?? "disabled"}
             onClick={handleLevel2}
             variant="circle"
-            className="absolute left-[46%] top-[63%] max-w-[100px] max-h-[100px]"
+            className="absolute w-[8%] h-[15%] left-[46%] top-[63%] max-w-[100px] max-h-[100px]"
           ></Button>
           <Button
             label=""
             color={level3Color[currentLevel] ?? "disabled"}
             onClick={handleFinish}
             variant="circle"
-            className="absolute left-[80%] top-[63%] max-w-[100px] max-h-[100px]"
+            className="absolute w-[8%] h-[15%] left-[80%] top-[63%] max-w-[100px] max-h-[100px]"
           ></Button>
         </div>
-        <div className="flex flex-col items-center justify-center z-0">
-          <div className=""></div>
+            {flag &&
+            <div className="absolute inset-0 z-20" onClick={handleCloseOverlay}>
+                <div
+                className="absolute"
+                style={{ left: `${flag.x}%`, top: `${flag.y}%`, transform: "translate(0%, 0%)" }}
+                onClick={(e) => { e.stopPropagation(); }}
+                >
+                    <Flag
+                    text={flag.text}
+                    handleStart={flag.onStart}
+                    direction={flag.direction}
+                    ></Flag>
+                </div>
+            </div>
+            }
         </div>
-      </div>
       {instructionOverlay &&
         <Overlay
         upperBoxAttributes="bg-[var(--surface)]"
@@ -150,7 +201,7 @@ export default function Map1() {
         handleSkip={handleSkip}
         >
       </Overlay>
-      }
+    }
     </main>
   );
 }
