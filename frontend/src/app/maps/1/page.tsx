@@ -49,7 +49,7 @@ export default function Map1() {
     if (storedLevel === null) {
       localStorage.setItem("currentLevel", "1");
     } else {
-      setCurrentLevel(Number(storedLevel));
+      setCurrentLevel(1);
     }
   }, []);
 
@@ -168,8 +168,8 @@ export default function Map1() {
             className="absolute w-[8%] h-[15%] left-[80%] top-[63%] max-w-[100px] max-h-[100px]"
           ></Button>
         </div>
-            {flag &&
-            <div className="absolute inset-0 z-20" onClick={handleCloseOverlay}>
+          {flag &&
+            <div className="absolute inset-0 z-30" onClick={handleCloseOverlay}>
                 <div
                 className="absolute"
                 style={{ left: `${flag.x}%`, top: `${flag.y}%`, transform: "translate(0%, 0%)" }}
@@ -182,7 +182,23 @@ export default function Map1() {
                     ></Flag>
                 </div>
             </div>
-            }
+          }
+          {currentLevel < 3 &&
+            <div className="absolute w-50 h-50 left-[76%] top-[43%] flex items-center justify-center z-20">
+              <img
+                src="/Map-1-Incompleted.png"
+                className="w-[15%] absolute object-contain"
+              />
+            </div>
+          }
+          {currentLevel >= 3 &&
+            <div className="absolute w-50 h-50 left-[80%] top-[43%] flex items-center justify-center z-20">
+              <img
+                src="/Map1-Flag.png"
+                className="w-[65%] absolute object-contain"
+            />
+            </div>
+          }
         </div>
       {instructionOverlay &&
         <Overlay
@@ -199,6 +215,7 @@ export default function Map1() {
         children={steps}
         handleClose={handleClose}
         handleSkip={handleSkip}
+        variant="presentation-instructions"
         >
       </Overlay>
     }

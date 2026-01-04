@@ -97,7 +97,7 @@ export default function Home() {
         {!hasPressedStart && 
           <div className="text-center">
             <h1 className="title">MusicPTN</h1>
-            <p className="body">Pitch To Note</p>
+            <p className="instructions-body">Pitch To Note</p>
           </div>
         }
 
@@ -113,7 +113,7 @@ export default function Home() {
         {/* Description box on menu screen*/}
         {!hasPressedStart &&
           <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
-          <p className="max-w-[895px] text-center body">
+          <p className="max-w-[895px] text-center instructions-body">
             Welcome to Music PTN. In this game, you will learn the most basic music
             concepts that you will need to know to be able to read music notation.
           </p>
@@ -122,7 +122,7 @@ export default function Home() {
         {/* Description box on menu screen - first time */}
         {hasPressedStart && firstTime == true &&
           <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
-            <p className="max-w-[1200px] text-center body">
+            <p className="max-w-[1200px] text-center instructions-body">
               This game is composed of a map which contains all the levels needed to learn
               the most fundamental music concept to read music notation, the music alphabet.
               This music concept is composed of 2 levels, each helping you practice the music
@@ -180,8 +180,8 @@ export default function Home() {
         {/* overlay */}
         {overlay &&
           <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
-            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] body">
-              <p className="text-center body">
+            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] instructions-body">
+              <p className="text-center instructions-body">
                 Are you sure that you want to delete the game? All progress will be gone
               </p>
             </div>
@@ -205,7 +205,7 @@ export default function Home() {
         }
         {deletedOverlay &&
           <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
-            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] body">
+            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] instructions-body">
               <p className="text-center title">
                 Deleted
               </p>

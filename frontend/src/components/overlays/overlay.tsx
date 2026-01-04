@@ -8,9 +8,10 @@ type OverlayProps = {
   children: React.ReactNode[];
   handleClose: () => void;
   handleSkip: () => void;
+  variant: "presentation-instructions" | "level-instructions";
 };
 
-export function Overlay({ upperBoxAttributes, texts, children, handleClose, handleSkip }: OverlayProps) {
+export function Overlay({ upperBoxAttributes, texts, children, handleClose, handleSkip, variant }: OverlayProps) {
   const maxNumberOfOverlays = texts.length;
   const [overlayNum, setOverlayNum] = useState<number>(0);
 
@@ -28,12 +29,22 @@ export function Overlay({ upperBoxAttributes, texts, children, handleClose, hand
     setOverlayNum((prev) => Math.min(prev + 1, maxNumberOfOverlays - 1));
   };
 
+  const [screenSize, setScreenSize] = useState<string>("");
+
+  useEffect(() => {
+    if (variant === "presentation-instructions") {
+    setScreenSize("fixed inset-0 bg-black/50");
+    } else {
+      setScreenSize("w-full");
+    }
+  }, []);
+
   return (
     <>
       {overlayNum >= 0 && overlayNum < maxNumberOfOverlays && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center p-6 md:p-10 lg:p-12 bg-black/50 z-50">
-          <div className={`flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] ${upperBoxAttributes}`}>
-            <p className="text-center body">
+        <div className={`flex flex-col items-center justify-center p-6 md:p-10 lg:p-12 z-50 ${screenSize}`}>
+          <div className={`flex items-center justify-content p-4 md:p-5 lg:p-6 rounded-[30px] ${upperBoxAttributes}`}>
+            <p className="text-center instructions-body">
               {texts[Math.min(overlayNum, texts.length - 1)]}
             </p>
           </div>
@@ -41,8 +52,8 @@ export function Overlay({ upperBoxAttributes, texts, children, handleClose, hand
           <div className="min-h-0 w-full flex items-center justify-center">
               {children[overlayNum]}
           </div>
-          {overlayNum === 0 &&
-            <div className="w-full flex items-center justify-between flex-1 p-10">
+          {overlayNum === 0 && variant === "presentation-instructions" &&
+            <div className="fixed bottom-0 w-full flex items-center justify-between flex-end p-6">
               <Button
                 label="Skip"
                 color="secondary"
@@ -59,8 +70,20 @@ export function Overlay({ upperBoxAttributes, texts, children, handleClose, hand
               ></Button>
             </div>
           }
+          {overlayNum === 0 && variant === "level-instructions" &&
+            <div className="fixed bottom-0 w-full flex items-center justify-end flex-end p-6">
+              <></>
+              <Button
+                  label="Continue"
+                  color="primary"
+                  onClick={handleContinue}
+                  variant="default"
+                  className="max-w-[224px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
+                ></Button>
+              </div>
+          }
           {overlayNum >= 1 && overlayNum < maxNumberOfOverlays - 1 && (
-            <div className="w-full flex items-center justify-between flex-1 p-10">
+            <div className="fixed bottom-0 w-full flex flex-row items-center justify-between p-6 z-50">
               <Button
                 label="Back"
                 color="secondary"
@@ -78,7 +101,7 @@ export function Overlay({ upperBoxAttributes, texts, children, handleClose, hand
             </div>
           )}
           {overlayNum === maxNumberOfOverlays - 1 && (
-            <div className="w-full flex items-center justify-between flex-1 p-10">
+            <div className="fixed bottom-0 w-full flex items-center justify-between flex-1 p-6">
               <Button
                 label="Back"
                 color="secondary"
