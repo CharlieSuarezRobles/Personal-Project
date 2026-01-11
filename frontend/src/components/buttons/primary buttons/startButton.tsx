@@ -1,44 +1,8 @@
-import { ColorVariant, ShapeVariant } from "../../../types";
-
-type ButtonProps = {
-    label: string;
-    onClick?: () => void;
-    color?: ColorVariant;
-    variant: ShapeVariant;
-    className?: string;
-}
+import { ColorVariant, ShapeVariant, colors } from "../../../types";
+import { ButtonProps } from "../../../types"
 
 
-const colors: Record<ColorVariant, string> = {
-    primary: `
-        bg-[var(--action-primary)]
-        hover:bg-[var(--action-primary-hover)]
-        active:bg-[var(--action-primary-active)]
-    `,
-    secondary: `
-        bg-[var(--action-secondary)]
-        hover:bg-[var(--action-secondary-hover)]
-        active:bg-[var(--action-secondary-active)]
-    `,
-    danger: `
-        bg-[var(--error-or-danger)]
-        hover:bg-[var(--error-or-danger-hover)]
-        active:bg-[var(--error-or-danger-active)]
-    `,
-    note: `
-        bg-[var(--note)]
-        hover:bg-[(var(--note-hover)]
-        active:bg-[var(--note-active)]
-    `,
-    disabled: `
-        bg-[var(--disabled)]
-    `,
-    yellow: `
-        bg-[var(--yellow)]
-        hover:bg-[var(--yellow-hover)]
-        active:bg-[var(--yellow-active)]
-    `
-};
+
 
 const variants: Record<ShapeVariant, string> = {
     default: "min-w-[50px] min-h-[50px] px-[10px] py-[10px] rounded-[30px]",

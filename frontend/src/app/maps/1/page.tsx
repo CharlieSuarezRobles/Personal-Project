@@ -24,14 +24,27 @@ export default function Map1() {
   ];
 
   const handleSkip = () => {
+    localStorage.setItem("firstTime", "false");
     setInstructionOverlay(false);
+    setFinalOverlay(false);
   }
 
   const handleClose = () => {
     setInstructionOverlay(false);
+    setFinalOverlay(false);
   }
 
   const [instructionOverlay, setInstructionOverlay] = useState<Boolean>(false);
+
+  useEffect(() => {
+    const firstTime = localStorage.getItem("firstTime");
+    if (firstTime === "true") {
+      setInstructionOverlay(true);
+    }
+  }, []);
+
+
+
 
   const handleInstructions = () => {
     setInstructionOverlay(true);
@@ -49,7 +62,7 @@ export default function Map1() {
     if (storedLevel === null) {
       localStorage.setItem("currentLevel", "1");
     } else {
-      setCurrentLevel(1);
+      setCurrentLevel(Number(storedLevel));
     }
   }, []);
 
@@ -96,18 +109,21 @@ export default function Map1() {
     setFinish(true);
   };
 
+  const [finalOverlay, setFinalOverlay] = useState<Boolean>(false);
+
   const handleStartFinish = () => {
-    router.push("/maps/1/levels/3");
+    setFinalOverlay(true);
   }
 
   const handleCloseOverlay = () => {
+    localStorage.setItem("firstTime", "false");
     setLevel1(false);
     setLevel2(false);
     setFinish(false);
   }
 
   const flag: { x: number; y: number; text: string; onStart: () => void; direction: "left" | "right" } | null =
-  finish ? { x: 64, y: 46, text: "End of music concept", onStart: handleFinish, direction: "right" } :
+  finish ? { x: 64, y: 46, text: "End of music concept", onStart: handleStartFinish, direction: "right" } :
   level2  ? { x: 49, y: 41, text: "Level 2\nIdentifying the 7 notes", onStart: handleStartLevel2, direction: "left" } :
   level1  ? { x: 18, y: 41, text: "Level 1\nIntroducing the 7 notes of music", onStart: handleStartLevel1, direction: "left" } :
   null;
@@ -126,7 +142,7 @@ export default function Map1() {
               color="secondary"
               onClick={handleInstructions}
               variant="default"
-              className="max-w-[233px] max-h-[68px] flex items-center justify-center px-3 py-3 rounded-[30px] label"
+              className="w-[233px] h-[78px] flex items-center justify-center px-3 py-3 rounded-[30px] label"
             ></Button>
           </div>
           <div className="flex justify-center items-center">
@@ -141,7 +157,7 @@ export default function Map1() {
               color="danger"
               onClick={handleExit}
               variant="default"
-              className="max-w-[100px] max-h-[100px] flex items-center justify-center px-5 py-5 rounded-[30px] label"
+              className="w-[150px] h-[100px] flex items-center justify-center px-5 py-5 rounded-[30px] label"
             ></Button>
           </div>
         </div>
@@ -218,7 +234,22 @@ export default function Map1() {
         variant="presentation-instructions"
         >
       </Overlay>
-    }
+      }
+      {finalOverlay &&
+        <Overlay
+        upperBoxAttributes="bg-[var(--surface)]"
+        texts={[
+            "Congratulations! You've finished the entire game! Although you've gone through all the levels, you can still access them to keep practicing \
+            and gain the ability to see a note on the staff and match it with its corresponding pitch.",
+            "Thanks for visiting this website! — Charlie Suarez Robles",
+        ]}
+        children={steps}
+        handleClose={handleClose}
+        handleSkip={handleSkip}
+        variant="presentation-instructions"
+        >
+      </Overlay>
+      }
     </main>
   );
 }

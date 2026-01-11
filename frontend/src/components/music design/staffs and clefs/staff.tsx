@@ -1,28 +1,7 @@
 import { useState, useEffect } from "react";
+import { NoteName, Note, Color, Chord, Position, NoteMappings, StaffProps, SVGColors } from "../../../types";
+import { NoteButton } from "../../buttons/note buttons/noteButton";
 
-type NoteName = "F3" | "G3" | "A3" | "B3" | "C4" | "D4" | "E4" | "F4" | "G4" | "A4" | "B4" |
-            "C5" | "D5" | "E5" | "F5" | "G5" | "A5" | "B5" |
-            "C6" | "D6" | "E6";
-
-
-type Note = {
-    nm: NoteName,
-    label?: string
-}
-
-
-type Chord = Note[];
-
-
-type Position = {
-    x: number,
-    y: number,
-    notesAboveMiddleLine: number,
-    label: string | null
-}
-
-
-type NoteMappings = Record<NoteName, number>;
 
 const noteMappings: NoteMappings = {
     "F3": 10,
@@ -45,18 +24,10 @@ const noteMappings: NoteMappings = {
     "B5": -7,
     "C6": -8,
     "D6": -9,
-    "E6": -10
+    "E6": -10,
 }
 
-type StaffProps = {
-    chords: Chord[];
-    numOfOutsideLines: 1 | 2 | 3;
-    width?: string;
-    showNoteNames: boolean,
-    clef: "treble" | "bass" | "none"
-}
-
-export function Staff({chords, numOfOutsideLines, width, showNoteNames, clef}: StaffProps) {
+export function Staff({chords, numOfOutsideLines, width, showNoteNames, clef, showColors}: StaffProps) {
 
     const [height, setHeight] = useState<number>(0);
 
@@ -82,7 +53,10 @@ export function Staff({chords, numOfOutsideLines, width, showNoteNames, clef}: S
                     {x: 230 + (100 * i),
                      y: ((height / 2) + noteMappings[note.nm] * 18),
                      notesAboveMiddleLine: noteMappings[note.nm], 
-                     label : showNoteNames ? (note.label ? note.label : null) : null}
+                     label : showNoteNames ? (note.label ? note.label : null) : null,
+                     color: showColors ? (note.color ? note.color : "note") : "note",
+                     onNoteClick: note.onClick ? note.onClick : undefined
+                    }
                 );
             }
         }
@@ -113,6 +87,8 @@ export function Staff({chords, numOfOutsideLines, width, showNoteNames, clef}: S
     }, []);
 
 
+
+
     const renderNotes = (positions: Position[]) => {
 
 
@@ -121,54 +97,17 @@ export function Staff({chords, numOfOutsideLines, width, showNoteNames, clef}: S
 
             return (
             <svg key={i}>
-                <defs>
-                    <mask id={maskId}>
-                        <rect width="100%" height="100%" fill="white"></rect>
-                        <ellipse
-                            cx={p.x}
-                            cy={p.y}
-                            rx={10}
-                            ry={14}
-                            fill="black"
-                        ></ellipse>
-                    </mask>
-                </defs>
-                <ellipse
-                    cx={p.x}
-                    cy={p.y}
-                    rx={23}
-                    ry={17}
-                    fill="black"
-                    mask={`url(#${maskId})`}
-                ></ellipse>
-                {notePositions[i].notesAboveMiddleLine >= 6 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (6 * 18)} x2={p.x + 30} y2={(height / 2) + (6 * 18)} stroke="black"></line>
-                }
-                {notePositions[i].notesAboveMiddleLine <= -6 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (-6 * 18)} x2={p.x + 30} y2={(height / 2) + (-6 * 18)} stroke="black"></line>
-                }
-                {notePositions[i].notesAboveMiddleLine >= 8 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (8 * 18)} x2={p.x + 30} y2={(height / 2) + (8 * 18)} stroke="black"></line>
-                }
-                {notePositions[i].notesAboveMiddleLine <= -8 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (-8 * 18)} x2={p.x + 30} y2={(height / 2) + (-8 * 18)} stroke="black"></line>
-                }
-                {notePositions[i].notesAboveMiddleLine >= 10 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (10 * 18)} x2={p.x + 30} y2={(height / 2) + (10 * 18)} stroke="black"></line>
-                }
-                {notePositions[i].notesAboveMiddleLine <= -10 &&
-                    <line x1={p.x - 30} y1={(height / 2) + (-10 * 18)} x2={p.x + 30} y2={(height / 2) + (-10 * 18)} stroke="black"></line>
-                }
-                {showNoteNames &&
-                    <text
-                        x={p.x}
-                        y={p.y + 50}
-                        className="label"
-                        textAnchor="middle"
-                    >
-                        {notePositions[i].label}
-                    </text>
-                }
+                <NoteButton
+                    x={p.x}
+                    y={p.y}
+                    notesAboveMiddleLine={p.notesAboveMiddleLine}
+                    label={p.label}
+                    color={p.color}
+                    onClick={p.onNoteClick}
+                    maskId={maskId}
+                    showNoteName={showNoteNames}
+                    heightOfStaff={height}
+                ></NoteButton>
             </svg>
             );
         });

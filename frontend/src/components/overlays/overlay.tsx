@@ -1,15 +1,7 @@
 import { useState, useEffect, ReactNode } from "react";
 
 import { Button } from "../buttons/primary buttons/startButton";
-
-type OverlayProps = {
-  upperBoxAttributes: string;
-  texts: string[];
-  children: React.ReactNode[];
-  handleClose: () => void;
-  handleSkip: () => void;
-  variant: "presentation-instructions" | "level-instructions";
-};
+import { OverlayProps } from "../../types";
 
 export function Overlay({ upperBoxAttributes, texts, children, handleClose, handleSkip, variant }: OverlayProps) {
   const maxNumberOfOverlays = texts.length;

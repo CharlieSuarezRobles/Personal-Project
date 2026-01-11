@@ -1,11 +1,8 @@
 
 import { Button } from "../buttons/primary buttons/startButton";
+import { FlagProps } from "../../types"
 
-type FlagProps = {
-    text: string;
-    handleStart: () => void;
-    direction?: "left" | "right";
-}
+
 
 export function Flag({text, handleStart, direction}: FlagProps) {
     return (

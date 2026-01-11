@@ -75,7 +75,7 @@ export default function Home() {
 
   const handleContinue = () => {
     //set the first time in local storage to false
-    localStorage.setItem("firstTime", "false");
+    //localStorage.setItem("firstTime", "false");
     //go to the next screen
     router.push("/maps/1");
   }
