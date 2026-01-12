@@ -1,26 +1,111 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  /* General Purpose Colors */
+  --black: #000000;
+
+  --background: #D5F0E9;
+  --surface: #9EB2AD;
+  --text-primary: #171717;
+  --accent: #81DAC1;
+  --strong-accent: #DAC481;
+
+  --action-primary: #3E9D82;
+  --action-primary-hover: #2E6B5A;
+  --action-primary-active: #204C40;
+
+  --action-secondary: #A9B2B1;
+  --action-secondary-hover: #79807F;
+  --action-secondary-active: #535B5A;
+
+  --note: #171717;
+  --note-hover: #3A3A3A;
+  --note-active: #7C7C7C;
+
+  --error-or-danger: #E45A4A;
+  --error-or-danger-hover: #A54F46;
+  --error-or-danger-active: #7B3A32;
+
+  --disabled: #D6D6CB;
+
+  /* Status Colors */
+  --success: #459834;
+  --try-again: #B2B2B2;
+
+  --exit: #E45A4A;
+  --exit-hover: #A54F46;
+  --exit-active: #7B3A32;
+
+  /* Extra Colors */
+  --brown: #9B8778;
+
+  --yellow: #DCD661;
+  --yellow-hover: #BCB755;
+  --yellow-active: #A29D4A;
+
+  /* Fonts */
+  --main-font: "Lato", Arial, Helvetica, sans-serif;
+
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+.primary-buttons {
+  width: 167px;
+  height: 108px;
+  gap: 10px;
+  padding: 30px, 40px;
+  border-radius: 30px;
+  background: var(--action-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.title, .instructions-body, .theory-body, .small-body, .heading, .label, .note-text, .feedback-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.title {
+  font-weight: bold;
+  font-size: 70px;
+}
+
+.instructions-body {
+  font-weight: 400;
+  font-size: 40px;
+}
+
+.theory-body {
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.small-body {
+  font-weight: 400;
+  font-size: 25px;
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 50px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 40px;
+}
+
+.small-label {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.note-text {
+  font-weight: bold;
+  font-size: 100px;
+}
+
+.feedback-text {
+  font-weight: bold;
+  font-size: 100px;
 }
