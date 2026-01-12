@@ -19,19 +19,19 @@ export default function Level2() {
     const END_OF_EXERCISE_1_INSTRUCTIONS = 2;
     const END_OF_EXERCISE_2_INSTRUCTIONS = 3;
     const END_OF_EXERCISE_3_INSTRUCTIONS = 4;
-    const NUM_EASY_EXERCISE_1_Q = 1;
-    const NUM_MID_EXERCISE_1_Q = 1;
-    const NUM_HARD_EXERCISE_1_Q = 1;
+    const NUM_EASY_EXERCISE_1_Q = 5;
+    const NUM_MID_EXERCISE_1_Q = 5;
+    const NUM_HARD_EXERCISE_1_Q = 5;
     const NUM_OF_EXERCISE_1_QUESTIONS = NUM_EASY_EXERCISE_1_Q + NUM_MID_EXERCISE_1_Q + NUM_HARD_EXERCISE_1_Q;
-    const NUM_EASY_EXERCISE_2_Q = 1;
-    const NUM_MID_EXERCISE_2_Q = 1;
-    const NUM_HARD_EXERCISE_2_Q = 1;
+    const NUM_EASY_EXERCISE_2_Q = 5;
+    const NUM_MID_EXERCISE_2_Q = 5;
+    const NUM_HARD_EXERCISE_2_Q = 5;
     const NUM_OF_EXERCISE_2_QUESTIONS = NUM_EASY_EXERCISE_2_Q + NUM_MID_EXERCISE_2_Q + NUM_HARD_EXERCISE_2_Q;
-    const NUM_EASY_EXERCISE_3_Q = 1;
-    const NUM_MID_EXERCISE_3_Q = 1;
-    const NUM_HARD_EXERCISE_3_Q = 1;
+    const NUM_EASY_EXERCISE_3_Q = 5;
+    const NUM_MID_EXERCISE_3_Q = 5;
+    const NUM_HARD_EXERCISE_3_Q = 5;
     const NUM_OF_EXERCISE_3_QUESTIONS = NUM_EASY_EXERCISE_3_Q + NUM_MID_EXERCISE_3_Q + NUM_HARD_EXERCISE_3_Q;
-    const DURATION_OF_NOTES = 1;
+    const DURATION_OF_NOTES = 2;
 
     const numOfQuestions = [
         0,
@@ -98,11 +98,11 @@ export default function Level2() {
         "Welcome to level 2! Here you will get to practice the 7 notes. Before beginning, \
          you must be aware that each level is composed of exercises, each giving you a chance \
          to practice the notes in different ways. This level is composed of 3 exercises.",
-         "For this exercise, a pitch will be produced and its corresponding note will be labeled.\
+         "For this exercise, a pitch will be produced or in other words, we will play a note. The note corresponding to the pitch will be labeled.\
           You will have to select the note letter that corresponds to the sound.",
-        "Welcome to exercise 2! To complete this, a note will be played and you will have to identify\
+        "Welcome to exercise 2! To complete this, a note will be played (a pitch will be produced) and you will have to identify\
         its letter. Note that this time, there won’t be written notes.",
-        "Welcome to exercise 3. To complete this, a pitch will be played like in the last exercise; however,\
+        "Welcome to exercise 3. To complete this, a note will be played (a pitch will be produced) like in the last exercise; however,\
          you will have identify which note on the staff it corresponds to."
 
     ]
@@ -118,10 +118,9 @@ export default function Level2() {
     const [questionIndex, setQuestionIndex] = useState<number>(0);
 
     const question: String[] = [
-        "Click play to play a pitch and a note",
-        "What is the letter corresponding to the pitch and the note?",
-        "What is the note that was played?"
-
+        "Click play to play a note",
+        "What is the letter corresponding to the note you heard?",
+        "What is the note that you heard? Select the correct note on the staff",
     ]
 
     const [showQuestion, setShowQuestion] = useState<Boolean>(false);
@@ -200,7 +199,11 @@ export default function Level2() {
         const { correctNote, shuffledChoices } = generator(exerciseNum, getDifficulty(exerciseNum, progress));
         setCurrentNote(correctNote);
         setNoteChoices(shuffledChoices);
-        setQuestionIndex(1);
+        if (exerciseNum === 3) {
+            setQuestionIndex(2);
+        } else {
+            setQuestionIndex(1);
+        }
         playPianoNote(correctNote, 0.2, DURATION_OF_NOTES);
         if (exerciseNum === 1) {
             setShowStaff(true);

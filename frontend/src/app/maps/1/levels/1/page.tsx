@@ -10,7 +10,7 @@ import { NoteName, ColorVariant } from "../../../../../types";
 import { Scale } from "../../../../../components/tools/scale";
 
 export default function Level1() {
-    const DURATION_OF_NOTES = 0.5;
+    const DURATION_OF_NOTES = 2;
     const router = useRouter();
 
     const handleLow = () => {

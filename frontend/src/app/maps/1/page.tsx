@@ -16,7 +16,6 @@ export default function Map1() {
   const steps = [
     <></>,
     <></>,
-    <></>,
     <img
       src="/learning-path-sample.png"
       className="max-h-full max-w-full object-contain"
@@ -351,9 +350,8 @@ export default function Map1() {
         <Overlay
           upperBoxAttributes="bg-[var(--surface)]"
           texts={[
-            "In this screen, you can see a square, two circles, and a flagpole. Each reveal the progress you’ve made throughout the music concept.",
-            "Each square denotes a theory level. In it, you will be taught the music concept through explanations and animations.",
-            "Each circle denotes a level exercise. Each exercise will help you practice the music concept learned in the theory level in different ways.",
+            "In this screen, you can see three circles and a flagpole. Each reveal the progress you’ve made throughout the music concept.",
+            "Each circle denotes a level exercise. Each exercise will help you learn the theory and practice the music concept.",
             "All the circles that have been completed will be turquoise, the one that you are currently on will be yellow, and the ones that are still locked, will be gray. This image shows an example of this.",
             "Once you’ve completed all music levels, you will see that the flag will pop up. That means that you’ve completed the game!",
             "You can come back to these instructions whenever you want by clicking the instructions button on the map which you will see once you finished with these instructions.",
