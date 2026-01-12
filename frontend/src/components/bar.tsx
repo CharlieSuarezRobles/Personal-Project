@@ -5,13 +5,13 @@ export function Bar({color, numOfTotalParts, numOfCompletedParts}: BarProps) {
     const pct = Math.min(1, Math.max((numOfCompletedParts / numOfTotalParts), 0));
 
     const colorMap : Record<ColorVariant, string> = {
-        primary: "var(--action-primary)",
-        secondary: "var(--action-secondary)",
-        danger: "var(--error-or-danger)",
-        note: "var(--note)",
-        disabled: "var(--disabled)",
-        yellow: "var(--yellow)"
-
+        "primary": "var(--action-primary)",
+        "secondary": "var(--action-secondary)",
+        "danger": "var(--error-or-danger)",
+        "note": "var(--note)",
+        "disabled": "var(--disabled)",
+        "yellow": "var(--yellow)",
+        "strong-accent": "var(--strong-accent)"
     }
 
     return (
