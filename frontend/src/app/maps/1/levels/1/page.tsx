@@ -10,14 +10,15 @@ import { NoteName, ColorVariant } from "../../../../../types";
 import { Scale } from "../../../../../components/tools/scale";
 
 export default function Level1() {
+    const DURATION_OF_NOTES = 0.5;
     const router = useRouter();
 
     const handleLow = () => {
-        playPianoNote("C4", 0.2, 2);
+        playPianoNote("C4", 0.2, DURATION_OF_NOTES);
     }
 
     const handleHigh = () => {
-        playPianoNote("C5", 0.2, 2);
+        playPianoNote("C5", 0.2, DURATION_OF_NOTES);
     }
 
     const steps = [
@@ -229,7 +230,7 @@ export default function Level1() {
             } else {
                 throw new Error("noteIndex went to invalid index" + {index} + " in the timer function");
             }
-        }, 2000);
+        }, DURATION_OF_NOTES * 1000);
     }
 
     // It's in charge of playing the first note
@@ -239,7 +240,7 @@ export default function Level1() {
         setWrittenNote(notesWithNoOctave[noteIndex]);
         setShowWrittenNote(true);
         setNoteColor("strong-accent");
-        playPianoNote(notesWithOctaves[noteIndex], 0.2, 2);
+        playPianoNote(notesWithOctaves[noteIndex], 0.2, DURATION_OF_NOTES);
 
         timer(noteIndex);
         
@@ -252,7 +253,7 @@ export default function Level1() {
         setNoteColor("strong-accent");
         setWrittenNote(notesWithNoOctave[next]);
         setShowWrittenNote(true);
-        playPianoNote(notesWithOctaves[next], 0.2, 2);
+        playPianoNote(notesWithOctaves[next], 0.2, DURATION_OF_NOTES);
 
         timer(next);
 

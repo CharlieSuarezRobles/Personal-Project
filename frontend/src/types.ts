@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ColorVariant =
   | "primary"
   | "secondary"
@@ -8,6 +10,7 @@ export type ColorVariant =
   | "strong-accent";
 export type ShapeVariant = "default" | "circle" | "square";
 export type Difficulty = "easy" | "medium" | "hard";
+export type Direction = "left" | "right";
 
 export const colors: Record<ColorVariant, string> = {
   "primary": `
@@ -286,3 +289,35 @@ export type ExercisePart = {
   possibleNoteLetters: NoteName[];
   numOfLetterBoxes: number;
 };
+
+export type CircleButtonProps = {
+  onClick?: () => void,
+  color: ColorVariant,
+  x: number,
+  y: number
+}
+
+export type EndFlagProps = {
+  x: number,
+  y: number,
+  up: boolean,
+  map: number,
+  maskId: number
+}
+
+export type LevelFlagProps = {
+  x: number,
+  y: number,
+  color: ColorVariant,
+  text: string,
+  buttonText: string,
+  buttonCallback: () => void,
+  direction: Direction,
+}
+
+export type NoteProps = {
+  x: number,
+  y: number,
+  angle: number,
+  maskId: number
+}

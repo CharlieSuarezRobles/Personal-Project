@@ -2,11 +2,10 @@
 import { useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
-import { NoteLetter, NoteName, Difficulty } from "../../../../../types";
+import { NoteName, Difficulty } from "../../../../../types";
 import { Button } from "../../../../../components/buttons/primary buttons/startButton";
 import { Bar } from "../../../../../components/bar";
 import { Scale } from "../../../../../components/tools/scale";
-import { LetterBox } from "../../../../../components/letterBox";
 import { Staff } from "../../../../../components/music design/staffs and clefs/staff"
 import { playPianoNote } from "@/audio/audio output/instruments/piano";
 import { generator } from "../../../../../lib/generators/generator";
@@ -32,7 +31,7 @@ export default function Level2() {
     const NUM_MID_EXERCISE_3_Q = 1;
     const NUM_HARD_EXERCISE_3_Q = 1;
     const NUM_OF_EXERCISE_3_QUESTIONS = NUM_EASY_EXERCISE_3_Q + NUM_MID_EXERCISE_3_Q + NUM_HARD_EXERCISE_3_Q;
-    const DURATION_OF_NOTES = 2;
+    const DURATION_OF_NOTES = 1;
 
     const numOfQuestions = [
         0,
@@ -321,9 +320,16 @@ export default function Level2() {
     return (
         <div className="h-screen w-screen overflow-hidden grid grid-rows-[1fr_4fr_4fr] bg-[var(--background)]">
                     {/*The container that is on top*/}
-                    <div className="w-full grid grid-cols-[1fr_2fr_1fr] items-center p-1 md:p-2 lg:p-3">
+                    <div className="
+                        w-full
+                        grid gap-2
+                        grid-cols-2 grid-rows-2
+                        sm:grid-cols-[1fr_2fr_1fr] sm:grid-rows-1
+                        sm:p-1
+                        items-center"
+                    >
                         {/* Top left container*/}
-                            <div className="h-full flex items-center justify-center">
+                            <div className="h-full row-start-2 sm:row-start-auto flex items-center justify-center">
                                 {showExerciseNum && 
                                     <div className="flex items-center justify-center p-2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
                                         <p className="text-center heading">
@@ -333,7 +339,7 @@ export default function Level2() {
                                 }
                             </div>
                         {/* Top middle container */}
-                            <div className="h-full flex items-center justify-center">
+                            <div className="h-full col-span-2 sm:col-span-1 flex items-center justify-center">
                                 {!showBar && 
                                     <div className= "justify-self-center p-2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
                                         <p  className="text-center heading">
@@ -350,7 +356,7 @@ export default function Level2() {
                                 }
                             </div>
                         {/* Top right container */}
-                            <div className="h-full flex items-center justify-center">
+                            <div className="h-full row-start-2 col-start-2 sm:row-start-auto sm:col-start-auto flex items-center justify-center">
                                 {showExit &&
                                     <Button
                                     label="Exit"
@@ -427,7 +433,7 @@ export default function Level2() {
                                 }
                             </div>
                             {/* Bottom bottom middle container */}
-                            <div className={`h-full flex items-center gap-20 p-6 justify-center`}>
+                            <div className={`h-full flex items-center gap-4 md:gap-7 lg:gap-10 p-1 md:p-2 lg:p-3 justify-center`}>
                             {showLetters &&
                                     noteChoices.map((note, i) => (
                                         <Button
@@ -436,7 +442,7 @@ export default function Level2() {
                                         onClick={note === currentNote ? () => correct(note) : () => incorrect(note)}
                                         color="primary"
                                         variant="default"
-                                        className="h-[17vh] w-[10vw] note-text"
+                                        className="h-[17vh] w-[12vw] note-text"
                                         ></Button>
                                     ))
                             }
@@ -467,7 +473,7 @@ export default function Level2() {
                                     onClick={handlePlayAgain}
                                     color="secondary"
                                     variant="default"
-                                    className="w-[15vw] h-[10vh] label"
+                                    className="w-[15vw] h-[12vh] label"
                                     ></Button>
                                 }
                                 {showSaveAndFinish &&
