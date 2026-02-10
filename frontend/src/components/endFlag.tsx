@@ -1,4 +1,4 @@
-import { EndFlagProps } from "../../types";
+import { EndFlagProps } from "../types";
 
 export function EndFlag({x, y, up, map, maskId}: EndFlagProps) {
     return (

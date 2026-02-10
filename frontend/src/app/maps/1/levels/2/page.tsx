@@ -3,14 +3,14 @@ import { useState, ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
 import { NoteName, Difficulty } from "../../../../../types";
-import { Button } from "../../../../../components/buttons/primary buttons/startButton";
+import { Button } from "../../../../../components/startButton";
 import { Bar } from "../../../../../components/bar";
-import { Scale } from "../../../../../components/tools/scale";
-import { Staff } from "../../../../../components/music design/staffs and clefs/staff"
+import { Scale } from "../../../../../components/scale";
+import { Staff } from "../../../../../components/staff"
 import { playPianoNote } from "@/audio/audio output/instruments/piano";
 import { generator } from "../../../../../lib/generators/generator";
 import { getStaffChordsForExercise } from "@/lib/exerciseLogic/exercise";
-
+import { Text } from "../../../../../components/text";
 
 export default function Level2() {
 
@@ -19,17 +19,17 @@ export default function Level2() {
     const END_OF_EXERCISE_1_INSTRUCTIONS = 2;
     const END_OF_EXERCISE_2_INSTRUCTIONS = 3;
     const END_OF_EXERCISE_3_INSTRUCTIONS = 4;
-    const NUM_EASY_EXERCISE_1_Q = 5;
-    const NUM_MID_EXERCISE_1_Q = 5;
-    const NUM_HARD_EXERCISE_1_Q = 5;
+    const NUM_EASY_EXERCISE_1_Q = 1;
+    const NUM_MID_EXERCISE_1_Q = 1;
+    const NUM_HARD_EXERCISE_1_Q = 1;
     const NUM_OF_EXERCISE_1_QUESTIONS = NUM_EASY_EXERCISE_1_Q + NUM_MID_EXERCISE_1_Q + NUM_HARD_EXERCISE_1_Q;
-    const NUM_EASY_EXERCISE_2_Q = 5;
-    const NUM_MID_EXERCISE_2_Q = 5;
-    const NUM_HARD_EXERCISE_2_Q = 5;
+    const NUM_EASY_EXERCISE_2_Q = 1;
+    const NUM_MID_EXERCISE_2_Q = 1;
+    const NUM_HARD_EXERCISE_2_Q = 1;
     const NUM_OF_EXERCISE_2_QUESTIONS = NUM_EASY_EXERCISE_2_Q + NUM_MID_EXERCISE_2_Q + NUM_HARD_EXERCISE_2_Q;
-    const NUM_EASY_EXERCISE_3_Q = 5;
-    const NUM_MID_EXERCISE_3_Q = 5;
-    const NUM_HARD_EXERCISE_3_Q = 5;
+    const NUM_EASY_EXERCISE_3_Q = 1;
+    const NUM_MID_EXERCISE_3_Q = 1;
+    const NUM_HARD_EXERCISE_3_Q = 1;
     const NUM_OF_EXERCISE_3_QUESTIONS = NUM_EASY_EXERCISE_3_Q + NUM_MID_EXERCISE_3_Q + NUM_HARD_EXERCISE_3_Q;
     const DURATION_OF_NOTES = 2;
 
@@ -94,7 +94,7 @@ export default function Level2() {
     const [showInstructionText, setShowInstructionText] = useState<Boolean>(true); //---------------
     const [instructionTextIndex, setInstructionTextIndex] = useState<number>(0);
 
-    const instructionText: String[] = [
+    const instructionText: string[] = [
         "Welcome to level 2! Here you will get to practice the 7 notes. Before beginning, \
          you must be aware that each level is composed of exercises, each giving you a chance \
          to practice the notes in different ways. This level is composed of 3 exercises.",
@@ -117,7 +117,7 @@ export default function Level2() {
 
     const [questionIndex, setQuestionIndex] = useState<number>(0);
 
-    const question: String[] = [
+    const question: string[] = [
         "Click play to play a note",
         "What is the letter corresponding to the note you heard?",
         "What is the note that you heard? Select the correct note on the staff",
@@ -321,34 +321,34 @@ export default function Level2() {
 
 
     return (
-        <div className="h-screen w-screen overflow-hidden grid grid-rows-[1fr_4fr_4fr] bg-[var(--background)]">
+        <div className="h-screen w-screen overflow-x-hidden grid grid-rows-[1fr_4fr_4fr]">
                     {/*The container that is on top*/}
                     <div className="
                         w-full
-                        grid gap-2
-                        grid-cols-2 grid-rows-2
-                        sm:grid-cols-[1fr_2fr_1fr] sm:grid-rows-1
-                        sm:p-1
-                        items-center"
+                        flex
+                        flex-wrap
+                        flex-row
+                        items-center
+                        p-2 md:p-3 lg:p-4"
                     >
                         {/* Top left container*/}
-                            <div className="h-full row-start-2 sm:row-start-auto flex items-center justify-center">
+                            <div className="h-full order-2 sm:order-1 sm:flex-1 flex items-center justify-start">
                                 {showExerciseNum && 
-                                    <div className="flex items-center justify-center p-2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
-                                        <p className="text-center heading">
-                                            {exerciseText[exerciseNum]}
-                                        </p>
-                                    </div>
+                                    <Text
+                                        text={exerciseText[exerciseNum]}
+                                        color="surface"
+                                        heading="mini-heading"
+                                    />
                                 }
                             </div>
                         {/* Top middle container */}
-                            <div className="h-full col-span-2 sm:col-span-1 flex items-center justify-center">
+                            <div className="order-1 w-full sm:order-2 sm:flex-[2] flex items-center justify-center">
                                 {!showBar && 
-                                    <div className= "justify-self-center p-2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
-                                        <p  className="text-center heading">
-                                            {titleText[exerciseNum]}
-                                        </p>
-                                    </div>
+                                    <Text
+                                        text={titleText[exerciseNum]}
+                                        color="surface"
+                                        heading="mini-heading"
+                                    />
                                 }
                                 {showBar &&
                                     <Bar
@@ -359,7 +359,7 @@ export default function Level2() {
                                 }
                             </div>
                         {/* Top right container */}
-                            <div className="h-full row-start-2 col-start-2 sm:row-start-auto sm:col-start-auto flex items-center justify-center">
+                            <div className="h-full order-3 flex-1 flex items-center justify-end">
                                 {showExit &&
                                     <Button
                                     label="Exit"
@@ -374,11 +374,11 @@ export default function Level2() {
                     {/*The container that is in the middle */}
                     <div className="w-full flex items-center justify-center px-[1vw] py-[1vh]">
                         {showInstructionText &&
-                            <div className="flex items-center justify-center rounded-[30px] p-4 md:p-8 lg:p-12 bg-[var(--surface)]">
-                                <p className="text-center instructions-body">
-                                    {instructionText[instructionTextIndex]}
-                                </p>
-                            </div>
+                            <Text
+                                text={instructionText[instructionTextIndex]}
+                                color="surface"
+                                heading="instructions"
+                            />
                         }
                         {showStaff &&
                             <Staff
@@ -416,11 +416,11 @@ export default function Level2() {
                         {/* Top bottom container */}
                         <div className="w-full flex items-center justify-center">
                         {showQuestion && 
-                                <div className="w-fit p:2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
-                                    <p className="text-center instructions-body">
-                                        {question[questionIndex]}
-                                    </p>  
-                                </div>
+                            <Text
+                                text={question[questionIndex]}
+                                color="surface"
+                                heading="instructions"
+                            />
                         }
                         </div>
                         {/* Bottom bottom container */}
@@ -436,7 +436,7 @@ export default function Level2() {
                                 }
                             </div>
                             {/* Bottom bottom middle container */}
-                            <div className={`h-full flex items-center gap-4 md:gap-7 lg:gap-10 p-1 md:p-2 lg:p-3 justify-center`}>
+                            <div className={`h-full flex flex-wrap items-center gap-4 md:gap-7 lg:gap-10 p-1 md:p-2 lg:p-3 justify-center`}>
                             {showLetters &&
                                     noteChoices.map((note, i) => (
                                         <Button
@@ -493,19 +493,23 @@ export default function Level2() {
                     </div>
                     {showSuccess && 
                     <div className="fixed h-screen w-screen bg-black/50 z-10">
-                        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center px-[6vw] py-[8vh] rounded-[30px] bg-[var(--success)] z-10">
-                            <p className="text-center feedback-text">
-                                {successMessages[successMessageIndex]}
-                            </p>
+                        <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center px-[2vw] py-[2vh] rounded-[30px] bg-[var(--success)] z-10">
+                        <Text
+                            text={successMessages[successMessageIndex]}
+                            color="success"
+                            heading="heading"
+                        />
                         </div>
                     </div>
                     }
                     {showIncorrect &&
                     <div className="fixed h-screen w-screen bg-black/50 z-10">
                         <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center px-[6vw] py-[8vh] rounded-[30px] bg-[var(--try-again)] z-10">
-                            <p className="text-center feedback-text">
-                                Try again
-                            </p>
+                            <Text
+                                text="Try again"
+                                color="try-again"
+                                heading="heading"
+                            />
                         </div> 
                     </div>
                     }

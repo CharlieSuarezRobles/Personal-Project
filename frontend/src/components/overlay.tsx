@@ -1,9 +1,12 @@
 import { useState, useEffect, ReactNode } from "react";
 
-import { Button } from "../buttons/primary buttons/startButton";
-import { OverlayProps } from "../../types";
+import { Button } from "./startButton";
+import { OverlayProps } from "../types";
+import { Text } from "./text";
 
-export function Overlay({ upperBoxAttributes, texts, children, handleClose, handleSkip, variant }: OverlayProps) {
+const paddingClasses = "p-3 md:p-5 lg:p-7";
+
+export function Overlay({ color, texts, children, handleClose, handleSkip, variant }: OverlayProps) {
   const maxNumberOfOverlays = texts.length;
   const [overlayNum, setOverlayNum] = useState<number>(0);
 
@@ -34,79 +37,72 @@ export function Overlay({ upperBoxAttributes, texts, children, handleClose, hand
   return (
     <>
       {overlayNum >= 0 && overlayNum < maxNumberOfOverlays && (
-        <div className={`flex flex-col items-center justify-center p-6 md:p-10 lg:p-12 z-50 ${screenSize}`}>
-          <div className={`flex items-center justify-content p-4 md:p-5 lg:p-6 rounded-[30px] ${upperBoxAttributes}`}>
-            <p className="text-center instructions-body">
-              {texts[Math.min(overlayNum, texts.length - 1)]}
-            </p>
-          </div>
+        <div className={`inset-0 flex flex-1 flex-col items-center justify-center z-50 ${paddingClasses} ${screenSize}`}>
+          <Text 
+            text={texts[Math.min(overlayNum, texts.length - 1)]}
+            color={color}
+            heading="instructions"
+          />
           
-          <div className="min-h-0 w-full flex items-center justify-center">
+          <div className="min-h-0 w-full flex flex-1 items-center justify-center">
               {children[overlayNum]}
           </div>
           {overlayNum === 0 && variant === "presentation-instructions" &&
-            <div className="fixed bottom-0 w-full flex items-center justify-between flex-end p-6">
+            <div className="mt-auto bottom-0 w-full flex items-center justify-between flex-end p-6">
               <Button
                 label="Skip"
                 color="secondary"
                 onClick={handleSkip}
                 variant="default"
-                className="max-w-[136px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
               <Button
                 label="Continue"
                 color="primary"
                 onClick={handleContinue}
                 variant="default"
-                className="max-w-[224px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
             </div>
           }
           {overlayNum === 0 && variant === "level-instructions" &&
-            <div className="fixed bottom-0 w-full flex items-center justify-end flex-end p-6">
+            <div className="mt-auto bottom-0 w-full flex items-center justify-end flex-end p-6">
               <></>
               <Button
                   label="Continue"
                   color="primary"
                   onClick={handleContinue}
                   variant="default"
-                  className="max-w-[224px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
                 ></Button>
               </div>
           }
           {overlayNum >= 1 && overlayNum < maxNumberOfOverlays - 1 && (
-            <div className="fixed bottom-0 w-full flex flex-row items-center justify-between p-6 z-50">
+            <div className="mt-auto fixed bottom-0 w-full flex flex-row items-center justify-between p-6 z-50">
               <Button
                 label="Back"
                 color="secondary"
                 onClick={handleBack}
                 variant="default"
-                className="max-w-[136px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
               <Button
                 label="Continue"
                 color="primary"
                 onClick={handleContinue}
                 variant="default"
-                className="max-w-[224px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
             </div>
           )}
           {overlayNum === maxNumberOfOverlays - 1 && (
-            <div className="fixed bottom-0 w-full flex items-center justify-between flex-1 p-6">
+            <div className="mt-auto fixed bottom-0 w-full flex items-center justify-between flex-1 p-6">
               <Button
                 label="Back"
                 color="secondary"
                 onClick={handleBack}
                 variant="default"
-                className="max-w-[136px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
               <Button
                 label="Close"
                 color="primary"
                 onClick={handleClose}
                 variant="default"
-                className="max-w-[159px] max-h-[88px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
             </div>
           )}

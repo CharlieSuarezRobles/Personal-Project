@@ -2,8 +2,9 @@
 
 import { useRouter } from "next/navigation";
 
-import { Button } from "../components/buttons/primary buttons/startButton";
+import { Button } from "../components/startButton";
 import { useState, useEffect } from "react";
+import { Text } from "../components/text";
 
 export default function Home() {
   const router = useRouter();
@@ -80,55 +81,47 @@ export default function Home() {
     router.push("/maps/1");
   }
 
-  //Order in which tailwind classes are coded:
-  //max-[#px]
-  //special options
-  //min-w-screen, min-h-screen, min-width, min-height, max-width, max-height,
-  //height-fit, width-fit, height-full, width-full, height, width,
-  //flex-properties (flex-direction, align-items, justify-content, shrinking), 
-  //grid-properties (grid-cols-#) gap, padding (px, py), margin (m-[#px], mt-[#px], mr-[#px], mb-[#px], ml-[#px]) border radius, 
-  //text-width, text-height, font-family, font-weight, font-size, text-alignment, font-color, 
-  //background-color, extra-classes
 
   return (
-    <main className="overflow-hidden h-screen w-full bg-[var(--background)]">
+    <main className="overflow-x-hidden h-screen w-full lg:bg-[var(--background)]">
       {/* Title on menu screen */}
-      <div className="h-full w-full flex flex-col items-center justify-center gap-8 px-6 py-6">
+      <div className="h-full w-full items-center justify-center grid grid-rows-3 gap-8 p-2 md:p-6 lg:p-12">
         {!hasPressedStart && 
           <div className="text-center">
-            <h1 className="title">MusicPTN</h1>
-            <p className="instructions-body">Pitch To Note</p>
+            <h1 className="phone-title md:tablet-title lg:title">MusicPTN</h1>
+            <p className="phone-instructions-body md:tablet-instructions-body lg:instructions-body">Pitch To Note</p>
           </div>
         }
 
-      {/* Title on menu screen - first time */}
-        {hasPressedStart && firstTime === true && 
-          <div className= "flex items-center justify-center p-3 rounded-[30px] bg-[var(--surface)]">
-            <p  className="text-center heading">
-              Welcome for the first time
-            </p>
+        {/* Title on menu screen - first time */}
+          {hasPressedStart && firstTime === true && 
+          <div className="flex flex-row items-center justify-center">
+            <Text
+              text="Welcome for the first time!"
+              color="surface"
+              heading="instructions"
+              />
           </div>
-        }
+          }
 
         {/* Description box on menu screen*/}
         {!hasPressedStart &&
-          <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
-          <p className="max-w-[895px] text-center instructions-body">
-            Welcome to Music PTN. In this game, you will learn the most basic music
-            concepts that you will need to know to be able to read music notation.
-          </p>
-        </div>
+          <Text
+            text="Welcome to Music PTN. In this game, you will learn the most basic music
+            concepts that you will need to know to be able to read music notation."
+            color="surface"
+            heading="instructions"
+          />
         }
         {/* Description box on menu screen - first time */}
         {hasPressedStart && firstTime == true &&
-          <div className="flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--surface)]">
-            <p className="max-w-[1200px] text-center instructions-body">
-              This game is composed of a map which contains all the levels needed to learn
+          <Text 
+          text="This game is composed of a map which contains all the levels needed to learn
               the most fundamental music concept to read music notation, the music alphabet.
               This music concept is composed of 2 levels, each helping you practice the music
-              alphabet in different ways.
-            </p>
-          </div>
+              alphabet in different ways."
+          color="surface"
+          heading="instructions"/>
         }
 
         {/* Buttons on menu screen*/}
@@ -139,11 +132,10 @@ export default function Home() {
 
             <div className="flex align-center justify-center">
               <Button
-              label="Start"
+              label="Start Game"
               color="primary"
               onClick={handleStart}
               variant="default"
-              className="max-w-[167px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               />
             </div>
         
@@ -153,7 +145,6 @@ export default function Home() {
               color="danger"
               onClick={handleDelete}
               variant="default"
-              className="max-w-[400px] w-fit max-h-[68px] flex items-center justify-center py-3 px-3 rounded-[30px] small-label"
             />
             </div>
           </div>
@@ -179,13 +170,13 @@ export default function Home() {
         }
         {/* overlay */}
         {overlay &&
-          <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
-            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] instructions-body">
-              <p className="text-center instructions-body">
-                Are you sure that you want to delete the game? All progress will be gone
-              </p>
-            </div>
-            <div className="w-full flex items-center justify-center gap-30">
+          <div className="absolute flex flex-col items-center justify-center gap-14 inset-0 bg-black/50">
+            <Text
+              text="Are you sure that you want to delete the game? All progress will be gone"
+              color="danger"
+              heading="instructions"
+            />
+            <div className="w-full flex items-center justify-center gap-[120px]">
               <Button
               label="No"
               color="primary"
@@ -205,11 +196,11 @@ export default function Home() {
         }
         {deletedOverlay &&
           <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
-            <div className="max-w-[800px] max-h-[160px] flex items-center justify-content p-6 md:p-10 lg:p-12 rounded-[30px] bg-[var(--error-or-danger)] instructions-body">
-              <p className="text-center title">
-                Deleted
-              </p>
-            </div>
+            <Text
+              text="Deleted"
+              color="danger"
+              heading="heading"
+            />
           </div>
         }
 

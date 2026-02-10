@@ -2,12 +2,15 @@
 import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
-import { Button } from "../../../../../components/buttons/primary buttons/startButton";
-import { Overlay } from "../../../../../components/overlays/overlay";
-import { Staff } from "../../../../../components/music design/staffs and clefs/staff";
+import { Button } from "../../../../../components/startButton";
+import { Overlay } from "../../../../../components/overlay";
+import { Staff } from "../../../../../components/staff";
 import { playPianoNote } from "../../../../../audio/audio output/instruments/piano"
 import { NoteName, ColorVariant } from "../../../../../types";
-import { Scale } from "../../../../../components/tools/scale";
+import { Scale } from "../../../../../components/scale";
+import { Text } from "../../../../../components/text";
+
+const paddingClasses = "p-3 md:p-5 lg:p-7"; 
 
 export default function Level1() {
     const DURATION_OF_NOTES = 2;
@@ -359,30 +362,29 @@ export default function Level1() {
 
 
     return (
-        <div className="h-screen w-screen overflow-hidden grid grid-rows-[1fr_3fr] bg-[var(--background)]">
-            <div className="w-full grid grid-cols-[1fr_2fr_1fr] items-center p-1 md:p-2 lg:p-3">
+        <div className="h-screen w-screen overflow-x-hidden grid grid-rows-[1fr_4fr] bg-[var(--background)]">
+            <div className="w-full flex flex-row justify-center items-center p-1 md:p-2 lg:p-3">
                 <div className="flex-1"></div>
-                <div className= "justify-self-center p-2 md:p-3 lg:p-4 rounded-[30px] bg-[var(--surface)]">
-                    <p  className="text-center heading">
-                        Level 1: Introducing the 7 notes of music
-                    </p>
-                </div>
-                {showExit &&
+                <Text 
+                    text="Level 1: Introducing the 7 notes of music"
+                    color="surface"
+                    heading="mini-heading"
+                />
                 <div className="flex flex-1 items-center justify-center">
+                {showExit &&
                     <Button
                     label="Exit"
                     color="danger"
                     onClick={() => {router.push('/maps/1')}}
                     variant="default"
-                    className="max-w-[200px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
                     ></Button>
-                </div>
                 }
+                </div>
             </div>
             {instructionOverlay &&
             <div className="flex flex-col items-center justify-center">
                 <Overlay 
-                    upperBoxAttributes="bg-[var(--surface)]"
+                    color="surface"
                     texts={["Welcome to level 1. Here you will get an exposure about the 7 basic notes that exist in music.",
                             "Now, you might wonder what a note is. Before defining it, let’s start with music. When you listen \
                              to a song, you will hear sounds of all sorts. Musicians might want to reproduce these; however, they \
@@ -437,6 +439,7 @@ export default function Level1() {
             {mainScreen &&
                 <div className="flex flex-col items-center justify-center">
                     {!showCMajorScale && !showAllNotes &&
+                    <div className="w-full flex items-center justify-center">
                         <Staff
                             chords={[[{nm:notesWithOctaves[noteIndex], color: noteColor}]]}
                             numOfOutsideLines={1}
@@ -445,6 +448,7 @@ export default function Level1() {
                             clef={"treble"}
                             showColors={true}
                         ></Staff>
+                    </div>
                     }
                     {!showCMajorScale && showAllNotes &&
                         <Staff
@@ -474,8 +478,9 @@ export default function Level1() {
                         ></Scale>
                     </div>
                     }
-                    <div className="w-full grid grid-cols-[1fr_2fr_1fr] px-42">
-                        <div className="flex items-center justify-center px-9 py-9">
+
+                    <div className={`w-full flex items-center justify-between gap-2 md:gap-4 lg:gap-6 ${paddingClasses}`}>
+                        <div className="flex flex-1 items-center justify-start">
                         {showBack && noteIndex >= 1 &&
                         <Button
                             label="Back"
@@ -486,7 +491,7 @@ export default function Level1() {
                             ></Button>
                         }
                         </div>
-                        <div className="flex items-center justify-center px-9 py-9 rounded-[30px] bg-[var(--surface)]">
+                        <div className="flex flex-[2] items-center justify-center py-4 bg-[var(--surface)] rounded-[30px]">
                             {showStart &&
                                 <Button
                                 label="Start"
@@ -497,9 +502,11 @@ export default function Level1() {
                                 ></Button>
                             }
                             {showWrittenNote &&
-                                <p className="text-center note-text">
-                                    {writtenNote}
-                                </p>     
+                                <Text
+                                    text={writtenNote!}
+                                    color="surface"
+                                    heading="note"
+                                />    
                             }
                             {showPlayAgain &&
                                 <Button
@@ -511,12 +518,14 @@ export default function Level1() {
                                 ></Button>
                             }
                             {showFinalInstructions &&
-                                <p className="text-center theory-body">
-                                    {finalInstructions[finalInstructionsIndex]}
-                                </p>
+                                <Text
+                                    text={finalInstructions[finalInstructionsIndex]}
+                                    color="surface"
+                                    heading="instructions"
+                                />
                             }
                         </div>
-                        <div className="flex items-center justify-center">
+                        <div className="flex flex-1 items-center justify-end">
                             {showNextNoteButton &&
                                 <Button
                                 label="Next note"
@@ -542,9 +551,11 @@ export default function Level1() {
             {showFinishScreen &&
             <div className="flex-1 grid grid-rows-[2fr_1fr] gap-10 px-10 py-10">
                 <div className="flex items-center justify-center rounded-[30px] bg-[var(--success)]">
-                    <p className="text center theory-body">
-                        Congratulations! You've finished level 1!
-                    </p>
+                    <Text
+                        text="Congratulations! You've finished level 1!"
+                        color="success"
+                        heading="mini-heading"
+                    />
                 </div>
                 <div className="flex items-center justify-center">
                     <Button

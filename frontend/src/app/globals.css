@@ -59,53 +59,247 @@
   background: var(--action-primary);
 }
 
-.title, .instructions-body, .theory-body, .small-body, .heading, .label, .note-text, .feedback-text {
+@utility title {
   line-height: 1;
   color: var(--text-primary);
   font-family: var(--main-font), Arial, Helvetica, sans-serif;
-}
-
-.title {
   font-weight: bold;
   font-size: 70px;
 }
 
-.instructions-body {
+@utility instructions-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 35px;
 }
 
-.theory-body {
+@utility theory-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 30px;
 }
 
-.small-body {
+@utility small-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 25px;
 }
 
-.heading {
+@utility heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: 600;
   font-size: 50px;
 }
 
-.label {
+@utility mini-heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+@utility label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 40px;
 }
 
-.small-label {
+@utility small-label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 30px;
 }
 
-.note-text {
+@utility note-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 100px;
 }
 
-.feedback-text {
+@utility feedback-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
   font-weight: bold;
   font-size: 100px;
 }
+
+/* Tablet utilities */
+
+@utility tablet-title {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+@utility tablet-instructions-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+@utility tablet-theory-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+@utility tablet-small-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+@utility tablet-heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+@utility tablet-mini-heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 35px;
+}
+
+@utility tablet-label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+@utility tablet-small-label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+@utility tablet-note-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 80px;
+}
+
+@utility tablet-feedback-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 80px;
+}
+
+/* Phone utilities */
+
+@utility phone-title {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+
+@utility phone-instructions-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+@utility phone-theory-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+@utility phone-small-body {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+@utility phone-heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+}
+
+@utility phone-mini-heading {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: 25px;
+}
+
+@utility phone-label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+@utility phone-small-label {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px; /* Forces this size to apply */
+}
+
+@utility phone-note-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 60px;
+}
+
+@utility phone-feedback-text {
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--main-font), Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 60px;
+}
+
