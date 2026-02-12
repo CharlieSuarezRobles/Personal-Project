@@ -249,7 +249,7 @@ export default function Level1() {
         
     }
     // It's responsible for hiding all the buttons in the screen, show the letter of the note, and playing it
-    const changeNote = (next: number) => {
+    const  changeNote = (next: number) => {
         setShowBack(false);
         setShowPlayAgain(false);
         setShowNextNoteButton(false);
@@ -289,9 +289,9 @@ export default function Level1() {
 
     // It's responsible for playing the next note
     const handleNextNote = () => {
+        changeNote(noteIndex + 1)
         setNoteIndex(prev => {
                 const next = prev + 1;
-                changeNote(next);
                 return next;
             });
     }

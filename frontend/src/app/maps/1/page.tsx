@@ -243,6 +243,7 @@ export default function Map1() {
             map={1}
             maskId={1}
           ></EndFlag>
+
           {(level1 || level2 || finish) && (
             <rect
               x="0"
@@ -312,39 +313,6 @@ export default function Map1() {
             ></Button>
           </div>
         </div>
-
-        {/*<div className="absolute inset-0 z-10">*/}
-        {/*
-          <Button
-            label=""
-            color={currentLevel === 1 ? "yellow" : "primary"}
-            onClick={handleLevel1}
-            variant="square"
-            className="absolute w-[8%] aspect-square min-w-[10px] max-w-[100px] left-[15%] top-[63%] rounded-[10px]"
-          ></Button>
-          <Button
-            label=""
-            color={level2Color[currentLevel] ?? "disabled"}
-            onClick={handleLevel2}
-            variant="circle"
-            className="absolute w-[8%] h-[15%] left-[46%] top-[63%] max-w-[100px] max-h-[100px]"
-          ></Button>
-          <Button
-            label=""
-            color={level3Color[currentLevel] ?? "disabled"}
-            onClick={handleFinish}
-            variant="circle"
-            className="absolute w-[8%] h-[15%] left-[80%] top-[63%] max-w-[100px] max-h-[100px]"
-          ></Button>
-        */}
-        {/*</div>*/}
-
-        {currentLevel < 3 && (
-          <div className="absolute w-50 h-50 left-[76%] top-[43%] flex items-center justify-center z-20"></div>
-        )}
-        {currentLevel >= 3 && (
-          <div className="absolute w-50 h-50 left-[80%] top-[43%] flex items-center justify-center z-20"></div>
-        )}
       </div>
       {instructionOverlay && (
         <Overlay
@@ -355,7 +323,7 @@ export default function Map1() {
             "All the circles that have been completed will be turquoise, the one that you are currently on will be yellow, and the ones that are still locked, will be gray. This image shows an example of this.",
             "Once you’ve completed all music levels, you will see that the flag will pop up. That means that you’ve completed the game!",
             "You can come back to these instructions whenever you want by clicking the instructions button on the map which you will see once you finished with these instructions.",
-            "Now, to begin, you can close window, take a look at the map, and begin clicking on the square to start the first level.",
+            "Now, to begin, you can close window, take a look at the map, and begin clicking on the yellow circle to start the first level.",
           ]}
           children={steps}
           handleClose={handleClose}

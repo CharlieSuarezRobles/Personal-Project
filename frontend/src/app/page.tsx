@@ -182,20 +182,18 @@ export default function Home() {
               color="primary"
               onClick={handleNo}
               variant="default"
-              className="max-w-[134px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
               <Button
               label="Yes"
               color="danger"
               onClick={handleYes}
               variant="default"
-              className="max-w-[134px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
               ></Button>
             </div>
           </div>
         }
         {deletedOverlay &&
-          <div className="absolute flex flex-col items-center justify-center gap-14 h-screen w-screen bg-black/50">
+          <div className="absolute flex flex-col items-center justify-center h-screen w-screen inset-0 bg-black/50">
             <Text
               text="Deleted"
               color="danger"
