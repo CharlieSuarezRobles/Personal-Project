@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { NoteLetter, NoteName, ScaleType, MajorScaleProps } from "../../types"
-import { Button } from "../buttons/primary buttons/startButton"
-import { playPianoNote } from "../../audio/audio output/instruments/piano"
+import { NoteLetter, NoteName, ScaleType, MajorScaleProps } from "../types"
+import { Button } from "./startButton"
+import { playPianoNote } from "../audio/audio output/instruments/piano"
+import { Text } from "./text";
+
+const sizes = "w-[90px] h-[90px] md:w-[120px] md:h-[120px] lg:w-[160px] lg:h-[160px]";
 
 const notes: NoteLetter[] = [
     "C",
@@ -103,10 +106,12 @@ export function Scale({color, scaleNote, scaleType}: MajorScaleProps ) {
                 ></Button>
             }
             {currentlyPlaying &&
-                <div className="flex items-center justify-center w-[150px] h-[150px] rounded-[30px] bg-[var(--accent)]">
-                    <p className="text-center note-text">
-                        {currentNote}
-                    </p>
+                <div className={`flex items-center justify-center rounded-[30px] bg-[var(--accent)] ${sizes}`}>
+                    <Text
+                        text={currentNote}
+                        color="accent"
+                        heading="note"
+                    />
                 </div>
             }
         </>

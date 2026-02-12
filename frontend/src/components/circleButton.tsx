@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SVGColors, CircleButtonProps } from "../../types";
+import { SVGColors, CircleButtonProps } from "../types";
 
 
 

@@ -1,5 +1,5 @@
 import { useRef, useState, useLayoutEffect, useEffect } from "react";
-import { LevelFlagProps, SVGColors } from "../../types";
+import { LevelFlagProps, SVGColors } from "../types";
 
 export function LevelFlag({
     x,

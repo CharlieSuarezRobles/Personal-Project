@@ -1,8 +1,8 @@
-import { EndFlagProps } from "../../types";
+import { EndFlagProps } from "../types";
 
 export function EndFlag({x, y, up, map, maskId}: EndFlagProps) {
     return (
-        <g transform={`translate(${x} ${y})`}>
+        <g transform={`translate(${x} ${y})`} className="pointer-events-none">
             <rect x={0} y={0} width={20} height={200} fill="var(--brown)" />
             <circle cx={10} cy={0} r={18} fill={up ? "var(--yellow)" : "var(--disabled)"} />
             {up &&

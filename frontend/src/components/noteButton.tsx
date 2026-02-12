@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NoteButtonProps, SVGColors } from "../../../types";
+import { NoteButtonProps, SVGColors } from "../types";
 
 export function NoteButton({x, y, notesAboveMiddleLine, label, color, onClick, maskId, showNoteName, heightOfStaff} : NoteButtonProps) {
     const [hovered, setHovered] = useState<Boolean>(false);

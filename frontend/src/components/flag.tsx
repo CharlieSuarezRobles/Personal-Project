@@ -1,6 +1,6 @@
 
-import { Button } from "../buttons/primary buttons/startButton";
-import { FlagProps } from "../../types"
+import { Button } from "./startButton";
+import { FlagProps } from "../types"
 
 
 

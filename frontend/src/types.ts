@@ -7,7 +7,11 @@ export type ColorVariant =
   | "note"
   | "disabled"
   | "yellow"
-  | "strong-accent";
+  | "strong-accent"
+  | "success"
+  | "surface"
+  | "try-again"
+  | "accent";
 export type ShapeVariant = "default" | "circle" | "square";
 export type Difficulty = "easy" | "medium" | "hard";
 export type Direction = "left" | "right";
@@ -46,6 +50,14 @@ export const colors: Record<ColorVariant, string> = {
         hover:bg-[var(--yellow-hover)]
         active:bg-[var(--yellow-active)]
     `,
+  "surface":
+      "bg-[var(--surface)]",
+  "success":
+      "bg-[var(--success)]",
+  "try-again":
+    "bg-[var(--try-again)]",
+  "accent":
+    "bg-[var(--accent)]"
 };
 
 export type ColorObject = {
@@ -90,6 +102,26 @@ export const SVGColors: Record<ColorVariant, ColorObject> = {
     hover: "var(--yellow-hover)",
     active: "var(--yellow-active)",
   },
+  "surface": {
+    unactive: "var(--surface)",
+    hover: "var(--surface)",
+    active: "var(--surface)",
+  },
+  "success": {
+    unactive: "var(--success)",
+    hover: "var(--success)",
+    active: "var(--success)",
+  },
+  "try-again": {
+    unactive: "var(--try-again)",
+    hover: "var(--try-again)",
+    active: "var(--try-again)",
+  },
+  "accent": {
+    unactive: "var(--accent)",
+    hover: "var(--accent-hover)",
+    active: "var(--accent-active)",
+  }
 };
 
 export type ButtonProps = {
@@ -258,7 +290,7 @@ export type NoteButtonProps = {
 };
 
 export type OverlayProps = {
-  upperBoxAttributes: string;
+  color: ColorVariant;
   texts: string[];
   children: React.ReactNode[];
   handleClose: () => void;
@@ -321,3 +353,9 @@ export type NoteProps = {
   angle: number,
   maskId: number
 }
+
+export type TextProps = {
+  text: string
+}
+
+export type HeadingClass = "heading" | "mini-heading" | "instructions" | "note";

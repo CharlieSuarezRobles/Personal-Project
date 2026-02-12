@@ -2,13 +2,14 @@
 import { useRouter } from "next/navigation";
 import { ColorVariant } from "../../../types";
 import { useState, useEffect } from "react";
-import { Button } from "../../../components/buttons/primary buttons/startButton";
-import { Overlay } from "../../../components/overlays/overlay";
-import { Flag } from "../../../components/flags/flag";
-import { CircleButton } from "../../../components/buttons/circleButton";
-import { EndFlag } from "../../../components/flags/endFlag";
-import { LevelFlag } from "../../../components/flags/levelFlag";
+import { Button } from "../../../components/startButton";
+import { Overlay } from "../../../components/overlay";
+import { Flag } from "../../../components/flag";
+import { CircleButton } from "../../../components/circleButton";
+import { EndFlag } from "../../../components/endFlag";
+import { LevelFlag } from "../../../components/levelFlag";
 import { Note } from "../../../components/note";
+import { Text } from "../../../components/text";
 
 export default function Map1() {
   const router = useRouter();
@@ -124,7 +125,7 @@ export default function Map1() {
   const [showFlagBackground, setShowFlagBackground] = useState<Boolean>(false);
 
   return (
-    <main className="relative h-screen w-screen overflow-hidden flex items-center justify-center bg-[var(--background)]">
+    <main className="relative h-screen w-screen overflow-x-hidden flex items-center justify-center bg-[var(--background)]">
       <div className="relative h-screen flex items-center justify-center">
         {/*<img
           src="/Game-Map1.png"
@@ -242,6 +243,7 @@ export default function Map1() {
             map={1}
             maskId={1}
           ></EndFlag>
+
           {(level1 || level2 || finish) && (
             <rect
               x="0"
@@ -286,76 +288,42 @@ export default function Map1() {
           ) : null}
         </svg>
 
-        <div className="absolute left-0 top-0 right-0 grid grid-cols-[1fr_auto_1fr] p-6 md:p-10 lg:p-12 z-20">
-          <div className="flex justify-center items-center">
+        <div className="absolute left-0 top-0 right-0 flex flex-row flex-wrap items-center justify-center lg:justify-between p-6 md:p-10 lg:p-12 z-20 gap-y-4">
+          <div className="flex-none w-full lg:w-auto flex justify-center order-first lg:order-2">
+            <Text 
+              text="Music Alphabet"
+              color="surface"
+              heading="heading"
+            />
+          </div>
+          <div className="flex-1 flex justify-start order-2 lg:order-1">
             <Button
               label="Instructions"
               color="secondary"
               onClick={handleInstructions}
               variant="default"
-              className="w-[233px] h-[78px] flex items-center justify-center px-3 py-3 rounded-[30px] label"
             ></Button>
           </div>
-          <div className="flex justify-center items-center">
-            <div className="flex items-center justify-center p-3 rounded-[30px] bg-[var(--surface)]">
-              <p className="text-center title">Music Alphabet</p>
-            </div>
-          </div>
-
-          <div className="flex justify-center items-center">
+          <div className="flex-1 flex justify-end order-3 lg:order-3">
             <Button
               label="Exit"
               color="danger"
               onClick={handleExit}
               variant="default"
-              className="w-[150px] h-[100px] flex items-center justify-center px-5 py-5 rounded-[30px] label"
             ></Button>
           </div>
         </div>
-
-        {/*<div className="absolute inset-0 z-10">*/}
-        {/*
-          <Button
-            label=""
-            color={currentLevel === 1 ? "yellow" : "primary"}
-            onClick={handleLevel1}
-            variant="square"
-            className="absolute w-[8%] aspect-square min-w-[10px] max-w-[100px] left-[15%] top-[63%] rounded-[10px]"
-          ></Button>
-          <Button
-            label=""
-            color={level2Color[currentLevel] ?? "disabled"}
-            onClick={handleLevel2}
-            variant="circle"
-            className="absolute w-[8%] h-[15%] left-[46%] top-[63%] max-w-[100px] max-h-[100px]"
-          ></Button>
-          <Button
-            label=""
-            color={level3Color[currentLevel] ?? "disabled"}
-            onClick={handleFinish}
-            variant="circle"
-            className="absolute w-[8%] h-[15%] left-[80%] top-[63%] max-w-[100px] max-h-[100px]"
-          ></Button>
-        */}
-        {/*</div>*/}
-
-        {currentLevel < 3 && (
-          <div className="absolute w-50 h-50 left-[76%] top-[43%] flex items-center justify-center z-20"></div>
-        )}
-        {currentLevel >= 3 && (
-          <div className="absolute w-50 h-50 left-[80%] top-[43%] flex items-center justify-center z-20"></div>
-        )}
       </div>
       {instructionOverlay && (
         <Overlay
-          upperBoxAttributes="bg-[var(--surface)]"
+          color="surface"
           texts={[
             "In this screen, you can see three circles and a flagpole. Each reveal the progress you’ve made throughout the music concept.",
             "Each circle denotes a level exercise. Each exercise will help you learn the theory and practice the music concept.",
             "All the circles that have been completed will be turquoise, the one that you are currently on will be yellow, and the ones that are still locked, will be gray. This image shows an example of this.",
             "Once you’ve completed all music levels, you will see that the flag will pop up. That means that you’ve completed the game!",
             "You can come back to these instructions whenever you want by clicking the instructions button on the map which you will see once you finished with these instructions.",
-            "Now, to begin, you can close window, take a look at the map, and begin clicking on the square to start the first level.",
+            "Now, to begin, you can close window, take a look at the map, and begin clicking on the yellow circle to start the first level.",
           ]}
           children={steps}
           handleClose={handleClose}
@@ -365,7 +333,7 @@ export default function Map1() {
       )}
       {finalOverlay && (
         <Overlay
-          upperBoxAttributes="bg-[var(--surface)]"
+          color="surface"
           texts={[
             "Congratulations! You've finished the entire game! Although you've gone through all the levels, you can still access them to keep practicing \
             and gain the ability to see a note on the staff and match it with its corresponding pitch.",

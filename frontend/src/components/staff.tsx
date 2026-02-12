@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { NoteName, Note, Color, Chord, Position, NoteMappings, StaffProps, SVGColors } from "../../../types";
-import { NoteButton } from "../../buttons/note buttons/noteButton";
+import { NoteName, Note, Color, Chord, Position, NoteMappings, StaffProps, SVGColors } from "../types";
+import { NoteButton } from "./noteButton";
 
 
 const noteMappings: NoteMappings = {
