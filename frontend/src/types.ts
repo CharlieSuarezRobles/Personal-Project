@@ -12,7 +12,6 @@ export type ColorVariant =
   | "surface"
   | "try-again"
   | "accent";
-export type ShapeVariant = "default" | "circle" | "square";
 export type Difficulty = "easy" | "medium" | "hard";
 export type Direction = "left" | "right";
 
@@ -124,13 +123,6 @@ export const SVGColors: Record<ColorVariant, ColorObject> = {
   }
 };
 
-export type ButtonProps = {
-  label: string;
-  onClick?: () => void;
-  color?: ColorVariant;
-  variant: ShapeVariant;
-  className?: string;
-};
 
 export type FlagProps = {
   text: string;
@@ -257,15 +249,6 @@ export type Color = "primary" | "accent";
 
 export type Chord = Note[];
 
-export type Position = {
-  x: number;
-  y: number;
-  notesAboveMiddleLine: number;
-  label: string | null;
-  color: ColorVariant;
-  onNoteClick?: () => void;
-};
-
 export type NoteMappings = Record<string, number>;
 
 export type StaffProps = {
@@ -277,17 +260,6 @@ export type StaffProps = {
   showColors: boolean;
 };
 
-export type NoteButtonProps = {
-  x: number;
-  y: number;
-  notesAboveMiddleLine: number;
-  label: string | null;
-  color: ColorVariant;
-  onClick?: () => void;
-  maskId: string;
-  showNoteName: boolean;
-  heightOfStaff: number;
-};
 
 export type OverlayProps = {
   color: ColorVariant;

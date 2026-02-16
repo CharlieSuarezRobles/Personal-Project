@@ -70,7 +70,6 @@ export default function Home() {
                 label="Start Game"
                 color="primary"
                 onClick={handleStart}
-                variant="default"
                 />
               </div>
           
@@ -79,7 +78,6 @@ export default function Home() {
                 label="Delete progress"
                 color="danger"
                 onClick={handleDelete}
-                variant="default"
                 />
               </div>
             </div>
@@ -106,7 +104,6 @@ export default function Home() {
               label="Continue"
               color="primary"
               onClick={handleContinue}
-              variant="default"
             />
             </div>
           </>
@@ -123,13 +120,11 @@ export default function Home() {
               label="No"
               color="primary"
               onClick={handleNo}
-              variant="default"
               ></Button>
               <Button
               label="Yes"
               color="danger"
               onClick={handleYes}
-              variant="default"
               ></Button>
             </div>
           </div>

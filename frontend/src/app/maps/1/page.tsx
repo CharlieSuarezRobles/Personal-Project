@@ -127,11 +127,6 @@ export default function Map1() {
   return (
     <main className="relative h-screen w-screen overflow-x-hidden flex items-center justify-center bg-[var(--background)]">
       <div className="relative h-screen flex items-center justify-center">
-        {/*<img
-          src="/Game-Map1.png"
-          className="max-h-screen max-w-screen object-contain"
-        />
-        */}
 
         <svg
           viewBox="0 0 1440 810"
@@ -301,7 +296,6 @@ export default function Map1() {
               label="Instructions"
               color="secondary"
               onClick={handleInstructions}
-              variant="default"
             ></Button>
           </div>
           <div className="flex-1 flex justify-end order-3 lg:order-3">
@@ -309,7 +303,6 @@ export default function Map1() {
               label="Exit"
               color="danger"
               onClick={handleExit}
-              variant="default"
             ></Button>
           </div>
         </div>

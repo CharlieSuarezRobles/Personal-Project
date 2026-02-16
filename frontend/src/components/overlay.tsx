@@ -53,13 +53,11 @@ export function Overlay({ color, texts, children, handleClose, handleSkip, varia
                 label="Skip"
                 color="secondary"
                 onClick={handleSkip}
-                variant="default"
               ></Button>
               <Button
                 label="Continue"
                 color="primary"
                 onClick={handleContinue}
-                variant="default"
               ></Button>
             </div>
           }
@@ -70,7 +68,6 @@ export function Overlay({ color, texts, children, handleClose, handleSkip, varia
                   label="Continue"
                   color="primary"
                   onClick={handleContinue}
-                  variant="default"
                 ></Button>
               </div>
           }
@@ -80,13 +77,11 @@ export function Overlay({ color, texts, children, handleClose, handleSkip, varia
                 label="Back"
                 color="secondary"
                 onClick={handleBack}
-                variant="default"
               ></Button>
               <Button
                 label="Continue"
                 color="primary"
                 onClick={handleContinue}
-                variant="default"
               ></Button>
             </div>
           )}
@@ -96,13 +91,11 @@ export function Overlay({ color, texts, children, handleClose, handleSkip, varia
                 label="Back"
                 color="secondary"
                 onClick={handleBack}
-                variant="default"
               ></Button>
               <Button
                 label="Close"
                 color="primary"
                 onClick={handleClose}
-                variant="default"
               ></Button>
             </div>
           )}

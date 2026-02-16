@@ -101,8 +101,6 @@ export function Scale({color, scaleNote, scaleType}: MajorScaleProps ) {
                 label={labels[scaleToNumber[scaleNote]]}
                 onClick={button}
                 color={color}
-                variant="default"
-                className="w-[230px] h-[136px] label"
                 ></Button>
             }
             {currentlyPlaying &&

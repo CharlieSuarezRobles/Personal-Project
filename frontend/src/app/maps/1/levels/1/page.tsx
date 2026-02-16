@@ -32,15 +32,11 @@ export default function Level1() {
                 label="Low"
                 color="primary"
                 onClick={handleLow}
-                variant="default"
-                className="max-w-[150px] w-fit max-h-[150px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
             ></Button>
             <Button
                 label="High"
                 color="primary"
                 onClick={handleHigh}
-                variant="default"
-                className="max-w-[150px] w-fit max-h-[150px] flex items-center justify-center p-6 md:p-10 lg:p-12 rounded-[30px] label"
             ></Button>
         </div>,
         <></>,
@@ -50,9 +46,7 @@ export default function Level1() {
                 chords={[[]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -61,9 +55,7 @@ export default function Level1() {
                  [{nm:"G4"}], [{nm:"C5"}], [{nm:"F4"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -72,9 +64,7 @@ export default function Level1() {
                  [{nm:"F5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -82,9 +72,7 @@ export default function Level1() {
                 chords={[[{nm: "C4"}], [{nm:"D4"}], [{nm:"G5"}], [{nm:"A5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -92,9 +80,7 @@ export default function Level1() {
                 chords={[[{nm: "A4"}], [{nm:"B4"}], [{nm:"C5"}], [{nm:"D5"}], [{nm:"E5"}], [{nm:"F5"}], [{nm:"G5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -102,9 +88,7 @@ export default function Level1() {
                 chords={[[{nm: "A4"}], [{nm:"B4"}], [{nm:"C5"}], [{nm:"D5"}], [{nm:"E5"}], [{nm:"F5"}], [{nm:"G5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={false}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -113,9 +97,7 @@ export default function Level1() {
                  [{nm:"E5", label:"E"}], [{nm:"F5", label:"F"}], [{nm:"G5", label:"G"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -124,9 +106,7 @@ export default function Level1() {
                  [{nm:"E5", label:"E"}], [{nm:"F5", label:"F"}], [{nm:"G5", label:"G"}], [{nm:"A5", label:"A"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-center justify-center">
@@ -135,9 +115,7 @@ export default function Level1() {
                  [{nm:"E5", label:"E5"}], [{nm:"F5", label:"F5"}], [{nm:"G5", label:"G5"}], [{nm:"A5", label:"A5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-start justify-center">
@@ -146,9 +124,7 @@ export default function Level1() {
                  [{nm:"G4", label:"G4"}], [{nm:"A4", label:"A4"}], [{nm:"B4", label:"B4"}], [{nm:"C5", label:"C5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-start justify-center">
@@ -157,9 +133,7 @@ export default function Level1() {
                  [{nm:"G4", label:"G4"}], [{nm:"A4", label:"A4"}], [{nm:"B4", label:"B4"}], [{nm:"C5", label:"C5"}]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef="none"
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-start justify-center">
@@ -167,9 +141,7 @@ export default function Level1() {
                 chords={[[]]}
                 numOfOutsideLines={1}
                 width={"70%"}
-                showNoteNames={true}
                 clef={"treble"}
-                showColors={false}
             ></Staff>
         </div>,
         <div className="w-full flex items-start justify-center gap-8">
@@ -177,17 +149,13 @@ export default function Level1() {
                 chords={[[{nm:"B4", label:"B4"}]]}
                 numOfOutsideLines={1}
                 width={"35%"}
-                showNoteNames={true}
                 clef={"treble"}
-                showColors={false}
             ></Staff>
             <Staff
                 chords={[[{nm:"B4", label:"B4?"}]]}
                 numOfOutsideLines={1}
                 width={"35%"}
-                showNoteNames={true}
                 clef={"none"}
-                showColors={false}
             ></Staff>
         </div>,
         <></>,
@@ -376,7 +344,6 @@ export default function Level1() {
                     label="Exit"
                     color="danger"
                     onClick={() => {router.push('/maps/1')}}
-                    variant="default"
                     ></Button>
                 }
                 </div>
@@ -444,9 +411,7 @@ export default function Level1() {
                             chords={[[{nm:notesWithOctaves[noteIndex], color: noteColor}]]}
                             numOfOutsideLines={1}
                             width={"100%"}
-                            showNoteNames={false}
                             clef={"treble"}
-                            showColors={true}
                         ></Staff>
                     </div>
                     }
@@ -464,9 +429,7 @@ export default function Level1() {
                             ]}
                             numOfOutsideLines={1}
                             width={"100%"}
-                            showNoteNames={true}
                             clef={"treble"}
-                            showColors={false}
                         ></Staff>
                     }
                     {showCMajorScale &&
@@ -486,8 +449,6 @@ export default function Level1() {
                             label="Back"
                             onClick={handleBack}
                             color="secondary"
-                            variant="default"
-                            className="w-[127px] h-[88px] rounded-[30px] label"
                             ></Button>
                         }
                         </div>
@@ -497,8 +458,6 @@ export default function Level1() {
                                 label="Start"
                                 onClick={handleStart}
                                 color="primary"
-                                variant="default"
-                                className="w-[167px] h-[108px] label"
                                 ></Button>
                             }
                             {showWrittenNote &&
@@ -513,8 +472,6 @@ export default function Level1() {
                                 label="Play Again"
                                 onClick={handlePlayAgain}
                                 color="secondary"
-                                variant="default"
-                                className="w-[225px] h-[108px] label"
                                 ></Button>
                             }
                             {showFinalInstructions &&
@@ -531,8 +488,6 @@ export default function Level1() {
                                 label="Next note"
                                 onClick={handleNextNote}
                                 color="primary"
-                                variant="default"
-                                className="w-[199px] h-[68px] label"
                                 ></Button>
                             }
                             {showContinue &&
@@ -540,8 +495,6 @@ export default function Level1() {
                                 label="Continue"
                                 onClick={handleContinue}
                                 color="primary"
-                                variant="default"
-                                className="w-[224px] h-[88px] label"
                                 ></Button>
                             }
                         </div>
@@ -562,8 +515,6 @@ export default function Level1() {
                         label="Save and Finish"
                         onClick={handleSaveAndFinish}
                         color="primary"
-                        variant="default"
-                        className="w-[250px] h-[120px] label"
                     ></Button>
                 </div>
             </div>

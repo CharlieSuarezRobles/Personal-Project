@@ -365,8 +365,6 @@ export default function Level2() {
                                     label="Exit"
                                     color="danger"
                                     onClick={() => {router.push('/maps/1')}}
-                                    variant="default"
-                                    className="max-w-[200px] w-fit max-h-[108px] flex items-center justify-center p-6 md:p-8 lg:p-12 rounded-[30px] label"
                                     ></Button>
                                 }
                             </div>
@@ -385,9 +383,7 @@ export default function Level2() {
                             chords={getStaffChordsForExercise(exerciseNum, currentNote, correct, incorrect, showChords)}
                             numOfOutsideLines={1}
                             width="w-[80%]"
-                            showNoteNames={false}
                             clef="treble"
-                            showColors={false}
                             ></Staff>
                         }
                         {showMusicSymbol &&
@@ -444,8 +440,6 @@ export default function Level2() {
                                         label={note}
                                         onClick={note === currentNote ? () => correct(note) : () => incorrect(note)}
                                         color="primary"
-                                        variant="default"
-                                        className="h-[17vh] w-[12vw] note-text"
                                         ></Button>
                                     ))
                             }
@@ -457,8 +451,6 @@ export default function Level2() {
                                     label="Continue"
                                     onClick={handleContinue}
                                     color="primary"
-                                    variant="default"
-                                    className="w-[15vw] h-[12vh] label"
                                     ></Button>
                                 }
                                 {showPlay &&
@@ -466,8 +458,6 @@ export default function Level2() {
                                     label="Play"
                                     onClick={handlePlay}
                                     color="primary"
-                                    variant="default"
-                                    className="w-[10vw] h-[12vh] label"
                                     ></Button>
                                 }
                                 {showPlayAgain &&
@@ -475,8 +465,6 @@ export default function Level2() {
                                     label="Play Again"
                                     onClick={handlePlayAgain}
                                     color="secondary"
-                                    variant="default"
-                                    className="w-[15vw] h-[12vh] label"
                                     ></Button>
                                 }
                                 {showSaveAndFinish &&
@@ -484,8 +472,6 @@ export default function Level2() {
                                     label="Save and Finish"
                                     onClick={handleSaveAndFinish}
                                     color="primary"
-                                    variant="default"
-                                    className="w-[15vw] h-[15vh] label"
                                     ></Button>
                                 }
                             </div>

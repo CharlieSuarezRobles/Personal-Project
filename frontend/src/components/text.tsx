@@ -19,10 +19,12 @@ const HEADING_MAP = {
     "note": "phone-note-text md:tablet-note-text lg:note-text"
 }
 
+const BASE_CLASSES = "flex items-center justify-center rounded-[30px] w-fit";
+
 export function Text({ text, color, heading, className } : TextProps) {
 
     const containerClasses = twMerge(
-        "flex items-center justify-center rounded-[30px] w-fit",
+        BASE_CLASSES,
         colors[color],
         PADDING_CLASSES,
         className,

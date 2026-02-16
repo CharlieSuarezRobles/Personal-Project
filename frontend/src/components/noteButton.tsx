@@ -1,7 +1,18 @@
 import { useState } from "react";
-import { NoteButtonProps, SVGColors } from "../types";
+import { SVGColors, ColorVariant } from "../types";
 
-export function NoteButton({x, y, notesAboveMiddleLine, label, color, onClick, maskId, showNoteName, heightOfStaff} : NoteButtonProps) {
+interface NoteButtonProps {
+  x: number;
+  y: number;
+  linesAboveNote: number;
+  label: string | null;
+  color: ColorVariant;
+  onClick?: () => void;
+  maskId: string;
+  heightOfStaff: number;
+};
+
+export function NoteButton({x, y, linesAboveNote, label, color, onClick, maskId, heightOfStaff} : NoteButtonProps) {
     const [hovered, setHovered] = useState<Boolean>(false);
     const [isDown, setDown] = useState<Boolean>(false);
     return (
@@ -37,25 +48,25 @@ export function NoteButton({x, y, notesAboveMiddleLine, label, color, onClick, m
                 mask={`url(#${maskId})`}
             ></ellipse>
         </g>
-        {notesAboveMiddleLine >= 6 &&
+        {linesAboveNote >= 6 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (6 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (6 * 18)} stroke="black"></line>
         }
-        {notesAboveMiddleLine <= -6 &&
+        {linesAboveNote <= -6 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (-6 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-6 * 18)} stroke="black"></line>
         }
-        {notesAboveMiddleLine >= 8 &&
+        {linesAboveNote >= 8 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (8 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (8 * 18)} stroke="black"></line>
         }
-        {notesAboveMiddleLine <= -8 &&
+        {linesAboveNote <= -8 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (-8 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-8 * 18)} stroke="black"></line>
         }
-        {notesAboveMiddleLine >= 10 &&
+        {linesAboveNote >= 10 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (10 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (10 * 18)} stroke="black"></line>
         }
-        {notesAboveMiddleLine <= -10 &&
+        {linesAboveNote <= -10 &&
             <line x1={x - 30} y1={(heightOfStaff / 2) + (-10 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-10 * 18)} stroke="black"></line>
         }
-        {showNoteName &&
+        {label &&
             <text
                 x={x}
                 y={y + 50}
