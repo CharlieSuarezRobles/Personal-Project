@@ -1,5 +1,15 @@
-import { useRef, useState, useLayoutEffect, useEffect } from "react";
-import { LevelFlagProps, SVGColors } from "../types";
+import { useRef, useState, useLayoutEffect, useEffect, useMemo } from "react";
+import { ColorVariant, Direction, SVGColors } from "../types";
+
+interface LevelFlagProps {
+  x: number,
+  y: number,
+  color: ColorVariant,
+  text: string,
+  buttonText: string,
+  buttonCallback: () => void,
+  direction: Direction,
+}
 
 export function LevelFlag({
     x,
@@ -10,44 +20,42 @@ export function LevelFlag({
     buttonCallback, 
     direction,
 }: LevelFlagProps) {
+    const POLE_HEIGHT = 200;
+    const POLE_WIDTH = 30;
     const PADDING = 30;
 
-    const lines = text.split("\n");
+    const lines = useMemo(() => text.split("\n"), [text]);
     const textRef = useRef<SVGTextElement | null>(null);
-    const [bbox, setBbox] = useState<{ x: number; y: number; w: number; h: number }>({
-        x: 0, y: 0, w: 0, h: 0
-    });
+    const [bbox, setBbox] = useState({ x: 0, y: 0, w: 0, h: 0 });
+    const [hovered, setHovered] = useState<Boolean>(false);
+    const [down, setDown] = useState<Boolean>(false);
+    const xButtonBackground = direction === "right" ? bbox.w / 2 : -bbox.w / 2 - POLE_WIDTH;
 
     useLayoutEffect(() => {
         if (!textRef.current) return;
         const b = textRef.current.getBBox();
         setBbox({ x: b.x, y: b.y, w: b.width, h: b.height });
-    }, [text]);
-
-    const [hovered, setHovered] = useState<Boolean>(false);
-    const [down, setDown] = useState<Boolean>(false);
-
-    const xButtonBackground = direction === "right" ? bbox.w / 2 : bbox.w / 2 - 260;
+    }, [lines]);
 
     return (
     <g transform={`translate(${x} ${y})`}>
-        {/* pole (downwards) */}
-        <rect x={0} y={10} width={30} height={200} rx={15} fill={"var(--accent)"} />
-
-
-
-
+        <rect 
+            x={0}
+            y={10}
+            width={POLE_WIDTH}
+            height={POLE_HEIGHT}
+            rx={15}
+            fill={"var(--accent)"} />
         <g transform={`translate(${xButtonBackground} ${0})`}>
-            {/* button background square */}
             <g 
                 onMouseEnter={() => setHovered(true)}
                 onMouseDown={() => setDown(true)}
                 onMouseUp={() => setDown(false)}
-                onMouseLeave={() => setHovered(false)}
+                onMouseLeave={() => { setHovered(false); setDown(false); }}
                 onClick={() => buttonCallback()}
                 role="button"
                 tabIndex={0}
-                style={{cursor: "cursor"}}>
+                style={{cursor: "pointer"}}>
                 <rect 
                     x={-30}
                     y={105}
@@ -60,7 +68,6 @@ export function LevelFlag({
                     {buttonText}
                 </text>
             </g>
-            {/* pill */}
             <rect 
             x={bbox.x - PADDING}
             y={bbox.y - PADDING}
@@ -69,7 +76,6 @@ export function LevelFlag({
             fill="var(--accent)"
             rx={30}
             />
-            {/* text */}
             <text ref={textRef} x={PADDING} y={PADDING} textAnchor="middle" className="small-body">
                 {lines.map((line, i) => (
                     <tspan

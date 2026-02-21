@@ -74,8 +74,6 @@ export function Staff({chords, numOfOutsideLines, width, clef}: StaffProps) {
     const renderNotes = (positions: Position[]) => {
         
         return positions.map((p, i) => {
-            const maskId = `noteMask-${i}`;
-
             return (
             <svg key={i}>
                 <NoteButton
@@ -85,7 +83,6 @@ export function Staff({chords, numOfOutsideLines, width, clef}: StaffProps) {
                     label={p.label}
                     color={p.color}
                     onClick={p.onNoteClick}
-                    maskId={maskId}
                     heightOfStaff={height}
                 ></NoteButton>
             </svg>

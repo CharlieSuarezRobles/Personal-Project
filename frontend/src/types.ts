@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export type ColorVariant =
   | "primary"
   | "secondary"
@@ -260,22 +258,6 @@ export type StaffProps = {
   showColors: boolean;
 };
 
-
-export type OverlayProps = {
-  color: ColorVariant;
-  texts: string[];
-  children: React.ReactNode[];
-  handleClose: () => void;
-  handleSkip: () => void;
-  variant: "presentation-instructions" | "level-instructions";
-};
-
-export type MajorScaleProps = {
-  color: ColorVariant;
-  scaleNote: NoteLetter;
-  scaleType: ScaleType;
-};
-
 export type LetterBoxProps = {
   color: ColorVariant;
   width: string;
@@ -294,35 +276,11 @@ export type ExercisePart = {
   numOfLetterBoxes: number;
 };
 
-export type CircleButtonProps = {
-  onClick?: () => void,
-  color: ColorVariant,
-  x: number,
-  y: number
-}
-
 export type EndFlagProps = {
   x: number,
   y: number,
   up: boolean,
   map: number,
-  maskId: number
-}
-
-export type LevelFlagProps = {
-  x: number,
-  y: number,
-  color: ColorVariant,
-  text: string,
-  buttonText: string,
-  buttonCallback: () => void,
-  direction: Direction,
-}
-
-export type NoteProps = {
-  x: number,
-  y: number,
-  angle: number,
   maskId: number
 }
 

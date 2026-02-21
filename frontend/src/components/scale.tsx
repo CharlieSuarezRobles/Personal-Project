@@ -1,10 +1,20 @@
-import { useState } from "react";
-import { NoteLetter, NoteName, ScaleType, MajorScaleProps } from "../types"
+import { useEffect, useState } from "react";
+import { NoteLetter, NoteName, ScaleType, ColorVariant } from "../types"
 import { Button } from "./startButton"
 import { playPianoNote } from "../audio/audio output/instruments/piano"
 import { Text } from "./text";
+import { twMerge } from "tailwind-merge";
 
-const sizes = "w-[90px] h-[90px] md:w-[120px] md:h-[120px] lg:w-[160px] lg:h-[160px]";
+
+interface ScaleProps {
+    color: ColorVariant;
+    scaleNote: NoteLetter;
+    scaleType: ScaleType;
+};
+
+const BASE_CLASSES = "flex items-center justify-center rounded-[30px] bg-[var(--accent)]";
+
+const SIZES = "w-[90px] h-[90px] md:w-[120px] md:h-[120px] lg:w-[160px] lg:h-[160px]";
 
 const notes: NoteLetter[] = [
     "C",
@@ -67,11 +77,17 @@ const scaleTypes: Record<ScaleType, number[]> = {
 } 
 
 
-export function Scale({color, scaleNote, scaleType}: MajorScaleProps ) {
+export function Scale({color, scaleNote, scaleType}: ScaleProps) {
+    const containerClasses = twMerge(
+        BASE_CLASSES,
+        SIZES,
+    )
     const [currentlyPlaying, setCurrentlyPlaying] = useState<Boolean>(false);
     const [currentNote, setCurrentNote] = useState<NoteLetter>(scaleNote);
 
-    const noteTimer = () => {
+    useEffect(() => {
+        if (!currentlyPlaying) return;
+
         let i: number = 0;
         const rootNumber = scaleToNumber[scaleNote] - 1;
         setCurrentNote(notes[rootNumber + 1]);
@@ -86,14 +102,12 @@ export function Scale({color, scaleNote, scaleType}: MajorScaleProps ) {
             setCurrentNote(notes[(rootNumber + scaleTypes[scaleType][i]) % 12]);
             playPianoNote(noteForInstrument[rootNumber + scaleTypes[scaleType][i]], 0.2, 1);
         }, 1000);
-
-    }
+        return () => clearInterval(id);
+    }, [currentlyPlaying])
 
     const button = () => {
         setCurrentlyPlaying(true);
-        noteTimer();
     }
-
     return (
         <>
             {!currentlyPlaying &&
@@ -104,7 +118,7 @@ export function Scale({color, scaleNote, scaleType}: MajorScaleProps ) {
                 ></Button>
             }
             {currentlyPlaying &&
-                <div className={`flex items-center justify-center rounded-[30px] bg-[var(--accent)] ${sizes}`}>
+                <div className={containerClasses}>
                     <Text
                         text={currentNote}
                         color="accent"

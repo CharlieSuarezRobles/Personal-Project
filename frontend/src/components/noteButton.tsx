@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { SVGColors, ColorVariant } from "../types";
 
 interface NoteButtonProps {
@@ -8,13 +8,31 @@ interface NoteButtonProps {
   label: string | null;
   color: ColorVariant;
   onClick?: () => void;
-  maskId: string;
   heightOfStaff: number;
 };
 
-export function NoteButton({x, y, linesAboveNote, label, color, onClick, maskId, heightOfStaff} : NoteButtonProps) {
+const LINE_CLASSES = "stroke-black stroke-[1.5px]";
+
+export function NoteButton({x, y, linesAboveNote, label, color, onClick, heightOfStaff} : NoteButtonProps) {
     const [hovered, setHovered] = useState<Boolean>(false);
     const [isDown, setDown] = useState<Boolean>(false);
+    const rawId = useId();
+    const maskId = rawId.replace(/:/g, "");
+
+    const ledgerLines = useMemo(() => {
+        const lines = [];
+        if (linesAboveNote > 0) {
+            for (let i = 6; i <= linesAboveNote; i += 2) {
+                lines.push(i);
+            }
+        } else {
+            for (let i = -6; i >= linesAboveNote; i -= 2) {
+                lines.push(i)
+            }
+        }
+        return lines;
+    }, [linesAboveNote])
+
     return (
     <>
         <defs>
@@ -34,10 +52,10 @@ export function NoteButton({x, y, linesAboveNote, label, color, onClick, maskId,
             onClick={onClick ? () => onClick(): undefined}
             onMouseDown={onClick ? () => setDown(true) : undefined}
             onMouseUp={onClick ? () => setDown(false) : undefined}
-            onMouseLeave={onClick ? () => setHovered(false): undefined}
+            onMouseLeave={onClick ? () => { setHovered(false); setDown(false); }: undefined}
             role={onClick ? "button" : undefined}
             tabIndex={onClick ? 0 : undefined}
-            style={{cursor: onClick ? "cursor" : "default"}}
+            style={{cursor: onClick ? "pointer" : "default"}}
             >
             <ellipse
                 cx={x}
@@ -48,24 +66,21 @@ export function NoteButton({x, y, linesAboveNote, label, color, onClick, maskId,
                 mask={`url(#${maskId})`}
             ></ellipse>
         </g>
-        {linesAboveNote >= 6 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (6 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (6 * 18)} stroke="black"></line>
-        }
-        {linesAboveNote <= -6 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (-6 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-6 * 18)} stroke="black"></line>
-        }
-        {linesAboveNote >= 8 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (8 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (8 * 18)} stroke="black"></line>
-        }
-        {linesAboveNote <= -8 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (-8 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-8 * 18)} stroke="black"></line>
-        }
-        {linesAboveNote >= 10 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (10 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (10 * 18)} stroke="black"></line>
-        }
-        {linesAboveNote <= -10 &&
-            <line x1={x - 30} y1={(heightOfStaff / 2) + (-10 * 18)} x2={x + 30} y2={(heightOfStaff / 2) + (-10 * 18)} stroke="black"></line>
-        }
+
+        <g className={LINE_CLASSES}>
+            {ledgerLines.map((i) => {
+                return (
+                    <line 
+                        key={i}
+                        x1={x - 30}
+                        y1={(heightOfStaff / 2) + (i * 18)}
+                        x2={x + 30}
+                        y2={(heightOfStaff / 2) + (i * 18)}
+                        stroke="black"
+                    />
+                );
+             })}
+        </g>
         {label &&
             <text
                 x={x}
